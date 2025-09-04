@@ -1,0 +1,9 @@
+.img {
+  position: absolute;
+  top: -80px; // Header 높이만큼 위로 이동 (실제 Header 높이에 맞게 조정)
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1; // 다른 컨텐츠들 뒤로 보냄
+}

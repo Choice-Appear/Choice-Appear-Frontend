@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  // 글래스모피즘 효과
+  background-color: rgba(255, 255, 255, 0.1); // 매우 연한 투명 배경
+  backdrop-filter: blur(10px) saturate(180%); // 뒤 콘텐츠 blur처리
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); // 연한 경계선
+
+  .menu {
+    cursor: pointer;
+  }
+
+  .logo {
+    cursor: pointer;
+  }
+
+  .routing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    > * {
+      cursor: pointer;
+    }
+  }
+}
