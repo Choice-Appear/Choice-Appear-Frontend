@@ -4,11 +4,6 @@
   align-items: center;
   padding: 20px 30px;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-
   // 글래스모피즘 효과
   background-color: rgba(255, 255, 255, 0.1); // 매우 연한 투명 배경
   backdrop-filter: blur(10px) saturate(180%); // 뒤 콘텐츠 blur처리
@@ -32,4 +27,23 @@
       cursor: pointer;
     }
   }
+}
+
+// 메인페이지 스타일
+.header.mainPage {
+  position: fixed;
+  top: -100px;
+  left: 0;
+  right: 0;
+  transition: top 0.5s ease-in-out;
+
+  // 스크롤시 나타나는 헤더
+  &.visible {
+    top: 0;
+  }
+}
+
+// 다른 페이지 스타일
+.header.otherPage {
+  position: static;
 }
