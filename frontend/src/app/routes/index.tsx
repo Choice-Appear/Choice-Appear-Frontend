@@ -1,8 +1,11 @@
 import MainPage from '@/pages/mainPage/MainPage';
+import MyBasket from '@/pages/myBasket/MyBasket';
+import MyPage from '@/pages/myPage/MyPage';
+import WishList from '@/pages/wishList/WishList';
 import MainLayout from '@/shared/ui/MainLayout';
-import { createHashRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
-export const router = createHashRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
@@ -10,6 +13,18 @@ export const router = createHashRouter([
       {
         index: true,
         element: <MainPage />,
+      },
+      {
+        path: 'wishlist',
+        element: <WishList />,
+      },
+      {
+        path: 'mypage',
+        element: <MyPage />,
+      },
+      {
+        path: 'mybasket',
+        element: <MyBasket />,
       },
     ],
   },
