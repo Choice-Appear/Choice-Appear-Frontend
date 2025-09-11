@@ -1,11 +1,15 @@
 import styles from './Header.module.scss';
-import { Menu } from 'lucide-react';
-import { Search } from 'lucide-react';
-import { Bookmark } from 'lucide-react';
-import { UserRound } from 'lucide-react';
-import { ShoppingCart } from 'lucide-react';
+import {
+  Menu,
+  Search,
+  Bookmark,
+  UserRound,
+  ShoppingCart,
+} from '@/shared/icons';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import Sidebar from '@/widgets/sidebar/ui/Sidebar';
 
 interface HeaderProps {
   hideHeader?: boolean;
@@ -13,6 +17,7 @@ interface HeaderProps {
 
 export const Header = ({ hideHeader = false }: HeaderProps) => {
   const [isVisible, setIsVisible] = useState(!hideHeader);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const location = useLocation();
   const isMainPage = location.pathname === '/';
@@ -52,34 +57,50 @@ export const Header = ({ hideHeader = false }: HeaderProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hideHeader]);
 
+  /* 좌측 사이드바 설정 */
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <header
-      className={`${styles.header} ${
-        isMainPage ? styles.mainPage : styles.otherPage
-      } ${isVisible ? styles.visible : ''}`}
-    >
-      {/* 좌측 사이드바 */}
-      <div>
-        <Menu className={styles.menu} />
-      </div>
+    <>
+      <header
+        className={`${styles.header} ${
+          isMainPage ? styles.mainPage : styles.otherPage
+        } ${isVisible ? styles.visible : ''}`}
+      >
+        {/* 좌측 사이드바 */}
+        <div>
+          <Menu
+            className={styles.menu}
+            onClick={toggleSidebar}
+          />
+        </div>
 
-      {/* 로고 */}
-      <div>
-        <p
-          className={styles.logo}
-          onClick={goToHome}
-        >
-          로고
-        </p>
-      </div>
+        {/* 로고 */}
+        <div>
+          <p
+            className={styles.logo}
+            onClick={goToHome}
+          >
+            로고
+          </p>
+        </div>
 
-      {/* 우측 버튼 */}
-      <div className={styles.routing}>
-        <Search />
-        <Bookmark onClick={goToWishlist} />
-        <UserRound onClick={goToMyPage} />
-        <ShoppingCart onClick={goToMyBasket} />
-      </div>
-    </header>
+        {/* 우측 버튼 */}
+        <div className={styles.routing}>
+          <Search />
+          <Bookmark onClick={goToWishlist} />
+          <UserRound onClick={goToMyPage} />
+          <ShoppingCart onClick={goToMyBasket} />
+        </div>
+      </header>
+
+      {/* 사이드바 */}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
+    </>
   );
 };

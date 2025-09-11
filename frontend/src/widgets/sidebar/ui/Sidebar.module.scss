@@ -1,0 +1,43 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; // 초기에는 화면 밖에 숨김
+  width: 300px;
+  height: 100vh;
+  background-color: white;
+  z-index: 999;
+  transition: left 0.3s ease-in-out;
+  overflow-y: auto;
+
+  &.open {
+    left: 0; // 열릴 때 화면에 표시
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.login {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.closeButton {
+  padding: 5px;
+  cursor: pointer;
+}
