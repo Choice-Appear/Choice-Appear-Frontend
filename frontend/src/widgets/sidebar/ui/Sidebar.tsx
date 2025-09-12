@@ -5,7 +5,7 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
+export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   return (
     <>
       {/* 배경 오버레이 */}
@@ -35,5 +35,3 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
     </>
   );
 };
-
-export default Sidebar;

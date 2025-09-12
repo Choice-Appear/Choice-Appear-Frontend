@@ -5,11 +5,12 @@ import {
   Bookmark,
   UserRound,
   ShoppingCart,
+  ClipboardList,
 } from '@/shared/icons';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Sidebar from '@/widgets/sidebar/ui/Sidebar';
+import { Sidebar } from '@/widgets/sidebar';
 
 interface HeaderProps {
   hideHeader?: boolean;
@@ -93,6 +94,7 @@ export const Header = ({ hideHeader = false }: HeaderProps) => {
           <Bookmark onClick={goToWishlist} />
           <UserRound onClick={goToMyPage} />
           <ShoppingCart onClick={goToMyBasket} />
+          <ClipboardList />
         </div>
       </header>
 
