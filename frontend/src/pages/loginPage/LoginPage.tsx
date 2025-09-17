@@ -49,7 +49,7 @@ const LoginPage = () => {
           </div>
 
           {/* 아이디/비밀번호 찾기 */}
-          <div id="member-find">
+          <div className={styles.memberFind}>
             <a href="">아이디 찾기</a>
             <a href="">비밀번호 찾기</a>
           </div>

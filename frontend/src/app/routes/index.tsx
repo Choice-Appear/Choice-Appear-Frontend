@@ -1,3 +1,4 @@
+import LoginPage from '@/pages/loginPage/LoginPage';
 import MainPage from '@/pages/mainPage/MainPage';
 import MyBasket from '@/pages/myBasket/MyBasket';
 import MyPage from '@/pages/myPage/MyPage';
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <MainPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
       },
       {
         path: 'wishlist',
