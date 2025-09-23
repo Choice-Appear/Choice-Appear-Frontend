@@ -1,3 +1,4 @@
+import NoticeBoard from '@/pages/board/NoticeBoard';
 import LoginPage from '@/pages/loginPage/LoginPage';
 import MainPage from '@/pages/mainPage/MainPage';
 import MyBasket from '@/pages/myBasket/MyBasket';
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: 'mybasket',
         element: <MyBasket />,
+      },
+      {
+        path: 'notice',
+        element: <NoticeBoard />,
       },
     ],
   },

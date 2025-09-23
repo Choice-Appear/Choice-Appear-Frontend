@@ -42,6 +42,10 @@ export const Header = ({ hideHeader = false }: HeaderProps) => {
     navigate('/');
   };
 
+  const goToBoard = () => {
+    navigate('/notice');
+  };
+
   /* 훅 설정 */
   useEffect(() => {
     if (!hideHeader) return;
@@ -94,7 +98,7 @@ export const Header = ({ hideHeader = false }: HeaderProps) => {
           <Bookmark onClick={goToWishlist} />
           <UserRound onClick={goToMyPage} />
           <ShoppingCart onClick={goToMyBasket} />
-          <ClipboardList />
+          <ClipboardList onClick={goToBoard} />
         </div>
       </header>
 

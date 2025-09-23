@@ -1,7 +1,11 @@
+import styles from './NoticeBoard.module.scss';
+import { BoardList } from '@/widgets/board';
+
 const NoticeBoard = () => {
   return (
     <div>
-      <p>공지사항 게시판</p>
+      <h1 className={styles.title}>공지사항</h1>
+      <BoardList />
     </div>
   );
 };

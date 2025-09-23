@@ -1,1 +1,140 @@
-// 게시글 목록 스타일
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.header {
+  background-color: #f8f9fa;
+
+  tr {
+    border-bottom: 2px solid #dee2e6;
+  }
+}
+
+.column {
+  padding: 16px 8px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #495057;
+  border-bottom: 1px solid #dee2e6;
+
+  &.number {
+    width: 60px;
+    text-align: center;
+  }
+
+  &.title {
+    width: auto;
+    min-width: 250px;
+  }
+
+  &.author {
+    width: 100px;
+    text-align: center;
+  }
+
+  &.date {
+    width: 100px;
+    text-align: center;
+  }
+
+  &.views {
+    width: 60px;
+    text-align: center;
+  }
+}
+
+.body {
+  tr {
+    border-bottom: 1px solid #dee2e6;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.row {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f8f9fa;
+  }
+
+  &:active {
+    background-color: #e9ecef;
+  }
+}
+
+.cell {
+  padding: 12px 8px;
+  font-size: 14px;
+  color: #212529;
+  vertical-align: middle;
+
+  &.number {
+    text-align: center;
+    font-weight: 500;
+    color: #6c757d;
+  }
+
+  &.title {
+    text-align: left;
+  }
+
+  &.author {
+    text-align: center;
+    color: #495057;
+  }
+
+  &.date {
+    text-align: center;
+    color: #6c757d;
+    font-size: 13px;
+  }
+
+  &.views {
+    text-align: center;
+    color: #6c757d;
+    font-weight: 500;
+  }
+}
+
+.titleText {
+  display: block;
+  color: #212529;
+  text-decoration: none;
+
+  &:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
+}
+
+.empty {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+
+  p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 16px;
+  }
+}
