@@ -29,7 +29,14 @@
   }
 }
 
-// 메인페이지 스타일
+/* 스크롤 복원 시 애니메이션 제한 */
+.noAnimation {
+  // 모든 애니메이션과 트랜지션 비활성화
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 메인페이지 스타일 */
 .header.mainPage {
   position: fixed;
   top: -100px;
@@ -43,7 +50,7 @@
   }
 }
 
-// 다른 페이지 스타일
+/* 다른 페이지 스타일 */
 .header.otherPage {
   position: static;
 }
