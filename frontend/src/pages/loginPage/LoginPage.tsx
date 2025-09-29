@@ -1,3 +1,4 @@
+import { SocialLogin } from '@/features';
 import styles from './LoginPage.module.scss';
 
 const LoginPage = () => {
@@ -43,9 +44,7 @@ const LoginPage = () => {
 
           {/* 소셜로그인 */}
           <div className={styles.socialLogin}>
-            <a href="">네이버</a>
-            <a href="">구글</a>
-            <a href="">카카오</a>
+            <SocialLogin />
           </div>
 
           {/* 아이디/비밀번호 찾기 */}

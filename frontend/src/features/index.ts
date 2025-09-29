@@ -1,1 +1,2 @@
-export { BoardMenu } from './boardOptions/ui/BoardMenu';
+export { BoardMenu } from './boardOptions/BoardMenu';
+export { SocialLogin } from './auth/SocialLogin';
