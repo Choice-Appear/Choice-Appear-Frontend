@@ -2,10 +2,15 @@
 :global(html) {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
-.category > div {
-  display: flex;
+.category {
+  width: 100%;
+
+  > div {
+    display: flex;
+  }
 }
 
 .img {
@@ -14,4 +19,13 @@
   height: 100vh;
   object-fit: cover;
   z-index: -1; // 다른 컨텐츠들 뒤로 보냄
+}
+
+/* 모바일 (~768px) */
+@media (max-width: 768px) {
+  .img {
+    top: -50px; // 모바일 헤더에 맞추기
+    width: 100vw; // 전체 너비 사용
+    height: 60vh;
+  }
 }

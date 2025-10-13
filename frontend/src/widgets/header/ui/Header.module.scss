@@ -54,3 +54,24 @@
 .header.otherPage {
   position: static;
 }
+
+/* 모바일 스타일 (768px 이하) */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 20px; // 모바일에서는 패딩 축소
+
+    .routing {
+      gap: 15px;
+    }
+  }
+
+  // 모바일에서는 전환효과 제거
+  .header.mobile {
+    transition: none;
+  }
+
+  // UserRound 아이콘만 보이도록 설정
+  .hideOnMobile {
+    display: none;
+  }
+}
