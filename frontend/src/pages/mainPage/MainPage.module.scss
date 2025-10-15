@@ -5,20 +5,11 @@
   overflow-x: hidden;
 }
 
-.main {
-  .img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-}
-
 .categoryContainer {
   display: flex;
   width: 100%;
   margin-top: 30px;
-  gap: 0; // 이미지 사이 간격 (필요시 조정)
+  gap: 0;
 }
 
 .categoryItem {
@@ -32,7 +23,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
   }
 
   .overlay {
@@ -76,19 +67,12 @@
 
 /* 모바일 (~768px) */
 @media (max-width: 768px) {
-  .main {
-    .img {
-      max-width: 100%;
-      width: 100%;
-    }
-  }
-
   .categoryContainer {
-    flex-wrap: wrap; // 모바일에서는 2x2 그리드
+    flex-wrap: wrap;
   }
 
   .categoryItem {
-    flex: 0 0 50%; // 모바일에서는 1줄에 2개씩
+    flex: 0 0 50%;
 
     .categoryText {
       font-size: 24px;

@@ -1,22 +1,16 @@
-import main1 from '@/shared/assets/main1.png';
 import women from '@/shared/assets/women.jpg';
 import men from '@/shared/assets/men.jpg';
 import cap from '@/shared/assets/cap.jpg';
 import temp4 from '@/shared/assets/임시4.jpg';
 import styles from './MainPage.module.scss';
+import { MainBanner } from '@/widgets/mainBanner';
 
 const MainPage = () => {
   return (
     <main>
-      <section className={styles.main}>
-        <div>
-          <img
-            className={styles.img}
-            src={main1}
-            alt="메인1"
-          />
-        </div>
-      </section>
+      {/* 메인 배너 슬라이더 */}
+      <MainBanner />
+
       <section className={styles.categoryContainer}>
         <div className={styles.categoryItem}>
           <img
