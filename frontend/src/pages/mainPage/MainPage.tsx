@@ -23,24 +23,36 @@ const MainPage = () => {
             src={women}
             alt="여성"
           />
+          <div className={styles.overlay}>
+            <span className={styles.categoryText}>여성</span>
+          </div>
         </div>
         <div className={styles.categoryItem}>
           <img
             src={men}
             alt="남성"
           />
+          <div className={styles.overlay}>
+            <span className={styles.categoryText}>남성</span>
+          </div>
         </div>
         <div className={styles.categoryItem}>
           <img
             src={cap}
             alt="모자"
           />
+          <div className={styles.overlay}>
+            <span className={styles.categoryText}>모자</span>
+          </div>
         </div>
         <div className={styles.categoryItem}>
           <img
             src={temp4}
             alt="임시4"
           />
+          <div className={styles.overlay}>
+            <span className={styles.categoryText}>후드</span>
+          </div>
         </div>
       </section>
 
