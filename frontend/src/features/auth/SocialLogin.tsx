@@ -1,4 +1,4 @@
-import { SocialLoginButton } from '@/shared/ui';
+import { SocialLoginButton } from '@/shared/ui/socialLogin';
 import styles from './SocialLogin.module.scss';
 
 // 소셜로그인 리다이렉트 주소
