@@ -59,6 +59,7 @@ const LoginPage = () => {
               type="text"
               placeholder="아이디"
               value={formData.profileId}
+              disabled={isPending}
               onChange={e =>
                 setFormData(prev => ({
                   ...prev,
@@ -73,6 +74,7 @@ const LoginPage = () => {
               type="password"
               placeholder="비밀번호"
               value={formData.password}
+              disabled={isPending}
               onChange={e =>
                 setFormData(prev => ({
                   ...prev,
@@ -89,7 +91,7 @@ const LoginPage = () => {
                 id="save-id"
                 type="checkbox"
                 checked={saveId}
-                onChange={(e) => setSaveId(e.target.checked)}
+                onChange={e => setSaveId(e.target.checked)}
               />
               <label htmlFor="save-id">아이디 저장</label>
             </div>
@@ -97,11 +99,12 @@ const LoginPage = () => {
 
           {/* 로그인 버튼 */}
           <button
+            disabled={isPending}
             onClick={handleSubmit}
             type="submit"
             id="login-btn"
           >
-            로그인
+            {isPending ? '로그인 중...' : '로그인'}
           </button>
 
           {/* 소셜로그인 */}
