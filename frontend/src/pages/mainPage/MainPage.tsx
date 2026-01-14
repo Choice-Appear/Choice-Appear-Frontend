@@ -1,7 +1,7 @@
 import women from '@/shared/assets/women.jpg';
 import men from '@/shared/assets/men.jpg';
 import cap from '@/shared/assets/cap.jpg';
-import temp4 from '@/shared/assets/임시4.jpg';
+import hoodie from '@/shared/assets/hoodie.jpg';
 import styles from './MainPage.module.scss';
 import { MainBanner } from '@/widgets/mainBanner';
 
@@ -41,8 +41,8 @@ const MainPage = () => {
         </div>
         <div className={styles.categoryItem}>
           <img
-            src={temp4}
-            alt="임시4"
+            src={hoodie}
+            alt="후드"
           />
           <div className={styles.overlay}>
             <span className={styles.categoryText}>후드</span>
