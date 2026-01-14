@@ -1,4 +1,7 @@
+import { SidebarOptions } from '@/features/sidebar/SidebarOptions';
 import styles from './Sidebar.module.scss';
+import { X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -21,16 +24,15 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
         {/* 헤더 */}
         <header className={styles.header}>
           <nav className={styles.login}>
-            <span>로그인</span>
+            <Link className={styles.link} to={'/login'}>로그인</Link>
           </nav>
-          <p
+          <X
             className={styles.closeButton}
             onClick={onClose}
             aria-label="사이드바 닫기"
-          >
-            X
-          </p>
+          />
         </header>
+        <SidebarOptions />
       </aside>
     </>
   );
