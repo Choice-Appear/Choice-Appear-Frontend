@@ -1,0 +1,97 @@
+.fieldset {
+  border: 0;
+  padding: 30px 0px;
+
+  legend {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+  }
+}
+
+/* ID, 비밀번호 input */
+.id,
+.password {
+  display: block;
+  margin-bottom: 15px;
+
+  input {
+    width: 100%;
+    height: 60px;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+}
+
+/* 아이디 저장 옵션 */
+.option {
+  margin-bottom: 30px;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    input[type='checkbox'] {
+      width: auto;
+      margin: 0;
+    }
+
+    label {
+      font-size: 14px;
+      color: #666;
+      cursor: pointer;
+    }
+  }
+}
+
+/* 로그인 버튼 */
+button[type='submit'] {
+  width: 100%;
+  height: 60px;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* 소셜로그인 버튼 */
+.socialLogin {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+/* 아이디/비밀번호 찾기 */
+.memberFind {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+
+  a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+  }
+}

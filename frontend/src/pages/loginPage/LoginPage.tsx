@@ -1,7 +1,7 @@
-import { SocialLogin } from '@/features';
 import styles from './LoginPage.module.scss';
 import { useEffect, useState, type FormEvent } from 'react';
 import { useLogin } from '@/features/auth/hooks';
+import { LoginForm } from '@/widgets/form';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -50,74 +50,14 @@ const LoginPage = () => {
   return (
     <main className={styles.main}>
       <form className={styles.form}>
-        <fieldset className={styles.fieldset}>
-          <legend>Login</legend>
-          {/* 아이디/비밀번호 입력 */}
-          <label className={styles.id}>
-            <input
-              id="profileId"
-              type="text"
-              placeholder="아이디"
-              value={formData.profileId}
-              disabled={isPending}
-              onChange={e =>
-                setFormData(prev => ({
-                  ...prev,
-                  profileId: e.target.value,
-                }))
-              }
-            />
-          </label>
-          <label className={styles.password}>
-            <input
-              id="password"
-              type="password"
-              placeholder="비밀번호"
-              value={formData.password}
-              disabled={isPending}
-              onChange={e =>
-                setFormData(prev => ({
-                  ...prev,
-                  password: e.target.value,
-                }))
-              }
-            />
-          </label>
-
-          {/* 아이디 저장 옵션 버튼 */}
-          <div className={styles.option}>
-            <div>
-              <input
-                id="save-id"
-                type="checkbox"
-                checked={saveId}
-                onChange={e => setSaveId(e.target.checked)}
-              />
-              <label htmlFor="save-id">아이디 저장</label>
-            </div>
-          </div>
-
-          {/* 로그인 버튼 */}
-          <button
-            disabled={isPending}
-            onClick={handleSubmit}
-            type="submit"
-            id="login-btn"
-          >
-            {isPending ? '로그인 중...' : '로그인'}
-          </button>
-
-          {/* 소셜로그인 */}
-          <div className={styles.socialLogin}>
-            <SocialLogin />
-          </div>
-
-          {/* 아이디/비밀번호 찾기 */}
-          <div className={styles.memberFind}>
-            <a href="">아이디 찾기</a>
-            <a href="">비밀번호 찾기</a>
-          </div>
-        </fieldset>
+        <LoginForm
+          formData={formData}
+          onFormDataChange={setFormData}
+          saveId={saveId}
+          onSaveIdChange={setSaveId}
+          isPending={isPending}
+          onSubmit={handleSubmit}
+        />
       </form>
     </main>
   );
