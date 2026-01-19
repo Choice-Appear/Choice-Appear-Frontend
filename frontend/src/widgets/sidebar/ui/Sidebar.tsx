@@ -1,7 +1,8 @@
 import { SidebarOptions } from '@/features/sidebar/SidebarOptions';
 import styles from './Sidebar.module.scss';
 import { X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/shared/stores/authStore';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -9,6 +10,15 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
+  const navigate = useNavigate();
+  const { isLogin, profileId, logout } = useAuthStore();
+
+  const handleLogout = () => {
+    logout();
+    onClose();
+    navigate('/');
+  };
+
   return (
     <>
       {/* 배경 오버레이 */}
@@ -24,7 +34,21 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
         {/* 헤더 */}
         <header className={styles.header}>
           <nav className={styles.login}>
-            <Link className={styles.link} to={'/login'}>로그인</Link>
+            {isLogin ? (
+              <Link
+                className={styles.link}
+                to={'/mypage'}
+              >
+                {profileId} 님
+              </Link>
+            ) : (
+              <Link
+                className={styles.link}
+                to={'/login'}
+              >
+                로그인
+              </Link>
+            )}
           </nav>
           <X
             className={styles.closeButton}

@@ -2,8 +2,15 @@ import styles from './LoginPage.module.scss';
 import { useEffect, useState, type FormEvent } from 'react';
 import { useLogin } from '@/features/auth/hooks';
 import { LoginForm } from '@/widgets/form';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/shared/stores/authStore';
+import { isAxiosError } from 'axios';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const login = useAuthStore(state => state.login);
+  const isLogin = useAuthStore(state => state.isLogin);
+
   const [formData, setFormData] = useState({
     profileId: '',
     password: '',
@@ -11,7 +18,14 @@ const LoginPage = () => {
 
   const [saveId, setSaveId] = useState(false);
 
-  const { mutate: login, isPending } = useLogin();
+  const { mutate: loginMutation, isPending } = useLogin();
+
+  // 이미 로그인 된 경우 리다이렉트 처리
+  useEffect(() => {
+    if (isLogin) {
+      navigate('/');
+    }
+  }, [isLogin, navigate]);
 
   // 저장된 아이디 불러오기
   useEffect(() => {
@@ -44,7 +58,21 @@ const LoginPage = () => {
     }
 
     // 로그인 요청
-    login(formData);
+    loginMutation(formData, {
+      onSuccess: response => {
+        const { accessToken } = response.data;
+        login(formData.profileId, accessToken);
+      },
+      onError: error => {
+        if (isAxiosError(error)) {
+          if (error.response?.status === 401) {
+            alert('아이디 또는 비밀번호를 잘못 입력했습니다.');
+          } else {
+            alert('로그인에 실패했습니다.');
+          }
+        }
+      },
+    });
   };
 
   return (

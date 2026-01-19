@@ -1,8 +1,8 @@
 import { axiosInstance } from '@/shared/lib/axios';
-import type { LoginRequest } from './types';
+import type { LoginRequest, LoginResponse } from './types';
 
 export const authApi = {
   login: (data: LoginRequest) =>
-    axiosInstance.post<LoginRequest>('/auth/login', data),
+    axiosInstance.post<LoginResponse>('/auth/login', data),
   logout: () => axiosInstance.post('/auth/logout'),
 };
