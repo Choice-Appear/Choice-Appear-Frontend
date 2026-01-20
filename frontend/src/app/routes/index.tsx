@@ -1,10 +1,12 @@
+import MainLayout from '@/shared/ui/MainLayout';
 import NoticeBoard from '@/pages/board/NoticeBoard';
 import LoginPage from '@/pages/loginPage/LoginPage';
 import MainPage from '@/pages/mainPage/MainPage';
 import MyBasket from '@/pages/myBasket/MyBasket';
 import MyPage from '@/pages/myPage/MyPage';
 import WishList from '@/pages/wishList/WishList';
-import MainLayout from '@/shared/ui/MainLayout';
+import { Cap, Hoodie, Men, Women } from '@/pages/products';
+
 import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
@@ -35,6 +37,28 @@ export const router = createBrowserRouter([
       {
         path: 'notice',
         element: <NoticeBoard />,
+      },
+    ],
+  },
+  {
+    path: '/products',
+    element: <MainLayout />,
+    children: [
+      {
+        path: 'men',
+        element: <Men />,
+      },
+      {
+        path: 'women',
+        element: <Women />,
+      },
+      {
+        path: 'cap',
+        element: <Cap />,
+      },
+      {
+        path: 'hoodie',
+        element: <Hoodie />,
       },
     ],
   },
