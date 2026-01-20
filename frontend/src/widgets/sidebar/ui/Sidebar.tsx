@@ -1,7 +1,7 @@
 import { SidebarOptions } from '@/features/sidebar/SidebarOptions';
 import styles from './Sidebar.module.scss';
 import { X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/shared/stores/authStore';
 
 interface SidebarProps {
@@ -11,12 +11,20 @@ interface SidebarProps {
 
 export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isLogin, profileId, logout } = useAuthStore();
 
   const handleLogout = () => {
     logout();
     onClose();
-    navigate('/');
+
+    // 마이페이지, 위시리스트, 장바구니 페이지에서 로그아웃 시도 시 메인페이지로
+    const redirectPages = ['/mypage', 'wishlist', 'mybasket'];
+
+    // 의도치 않은 redirect를 방지하기 위해 includes 대신 startsWith 사용
+    if (redirectPages.some(page => location.pathname.startsWith(page))) {
+      navigate('/');
+    }
   };
 
   return (
@@ -35,12 +43,14 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
         <header className={styles.header}>
           <nav className={styles.login}>
             {isLogin ? (
-              <Link
-                className={styles.link}
-                to={'/mypage'}
-              >
-                {profileId} 님
-              </Link>
+              <div>
+                <Link
+                  className={styles.link}
+                  to={'/mypage'}
+                >
+                  {profileId} 님
+                </Link>
+              </div>
             ) : (
               <Link
                 className={styles.link}
@@ -57,6 +67,14 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
           />
         </header>
         <SidebarOptions />
+        {isLogin && (
+          <button
+            className={styles.logout}
+            onClick={handleLogout}
+          >
+            로그아웃
+          </button>
+        )}
       </aside>
     </>
   );
