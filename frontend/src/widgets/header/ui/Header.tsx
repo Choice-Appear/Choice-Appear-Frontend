@@ -44,7 +44,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className={styles.header}>
+      <div className={styles.container}>
         {/* 좌측 사이드바 */}
         <div>
           <Menu
@@ -80,7 +80,7 @@ export const Header = () => {
           />
           <ClipboardList onClick={goToBoard} />
         </div>
-      </header>
+      </div>
 
       {/* 사이드바 */}
       <Sidebar
