@@ -76,7 +76,7 @@ const LoginPage = () => {
   };
 
   return (
-    <main className={styles.main}>
+    <div className={styles.container}>
       <form className={styles.form}>
         <LoginForm
           formData={formData}
@@ -87,7 +87,7 @@ const LoginPage = () => {
           onSubmit={handleSubmit}
         />
       </form>
-    </main>
+    </div>
   );
 };
 
