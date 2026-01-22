@@ -4,7 +4,7 @@ import { MainBanner } from '@/widgets/mainBanner';
 
 const MainPage = () => {
   return (
-    <main>
+    <div>
       {/* 메인 배너 슬라이더 */}
       <MainBanner />
 
@@ -17,7 +17,7 @@ const MainPage = () => {
       </section>
 
       {/* Footer */}
-    </main>
+    </div>
   );
 };
 
