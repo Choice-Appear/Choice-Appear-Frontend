@@ -1,7 +1,8 @@
 import { LoginButton } from '@/features/buttons';
 import styles from './LoginForm.module.scss';
 import type { ChangeEvent, FormEvent } from 'react';
-import { SocialLogin } from '@/features/auth';
+import { SocialLogin } from '@/features/auth/socialLogin';
+import { Link } from 'react-router-dom';
 
 interface LoginFormData {
   profileId: string;
@@ -69,6 +70,12 @@ export const LoginForm = ({
           />
           <label htmlFor="save-id">아이디 저장</label>
         </div>
+        <Link
+          to={'/'}
+          className={styles.signupLink}
+        >
+          이메일로 회원가입
+        </Link>
       </div>
 
       {/* 로그인 버튼 */}

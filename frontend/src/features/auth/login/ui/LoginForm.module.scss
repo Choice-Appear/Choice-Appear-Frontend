@@ -40,6 +40,8 @@
 
 /* 아이디 저장 옵션 */
 .option {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 30px;
 
   div {
@@ -57,6 +59,12 @@
       color: #666;
       cursor: pointer;
     }
+  }
+
+  .signupLink {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
   }
 }
 

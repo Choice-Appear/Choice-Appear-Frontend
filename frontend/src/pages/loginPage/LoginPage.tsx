@@ -1,7 +1,7 @@
 import styles from './LoginPage.module.scss';
 import { useEffect, useState, type FormEvent } from 'react';
-import { useLogin } from '@/features/auth/hooks';
-import { LoginForm } from '@/widgets/form';
+import { useLogin } from '@/features/auth/login';
+import { LoginForm } from '@/features/auth/login';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/shared/stores/authStore';
 import { isAxiosError } from 'axios';
