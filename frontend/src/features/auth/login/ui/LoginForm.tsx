@@ -71,7 +71,7 @@ export const LoginForm = ({
           <label htmlFor="save-id">아이디 저장</label>
         </div>
         <Link
-          to={'/'}
+          to={'/member/agreement'}
           className={styles.signupLink}
         >
           이메일로 회원가입
