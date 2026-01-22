@@ -1,4 +1,5 @@
 import styles from './Header.module.scss';
+import logo from '@/shared/assets/cna.jpg';
 import {
   Menu,
   Search,
@@ -54,12 +55,12 @@ export const Header = () => {
 
         {/* 로고 */}
         <div>
-          <p
+          <img
             className={styles.logo}
             onClick={goToHome}
-          >
-            로고
-          </p>
+            src={logo}
+            alt="로고"
+          />
         </div>
 
         {/* 우측 버튼 */}
