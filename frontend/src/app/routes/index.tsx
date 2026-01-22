@@ -6,6 +6,7 @@ import MyBasket from '@/pages/myBasket/MyBasket';
 import MyPage from '@/pages/myPage/MyPage';
 import WishList from '@/pages/wishList/WishList';
 import { Cap, Hoodie, Men, Women } from '@/pages/products';
+import { Agreement, Join } from '@/pages/signupPage';
 
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -62,4 +63,18 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/member',
+    element: <MainLayout />,
+    children: [
+      {
+        path: 'agreement',
+        element: <Agreement />
+      },
+      {
+        path: 'join',
+        element: <Join />
+      }
+    ]
+  }
 ]);
