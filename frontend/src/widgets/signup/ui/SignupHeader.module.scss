@@ -1,0 +1,25 @@
+.container {
+  max-width: 800px;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0px;
+  }
+}
+
+.stepList {
+  display: flex;
+  gap: 100px;
+  list-style: none;
+  padding: 0;
+}
+
+.active {
+  font-weight: bold;
+  color: black;
+}
+
+.inactive {
+  color: #666;
+}
