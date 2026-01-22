@@ -1,2 +1,2 @@
-export { Agreement } from './ui/Agreement';
+export { TermsAgreement } from './ui/TermsAgreement';
 export { SignupForm } from './ui/SignupForm';
