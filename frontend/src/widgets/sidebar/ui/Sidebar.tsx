@@ -47,6 +47,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
                 <Link
                   className={styles.link}
                   to={'/mypage'}
+                  onClick={onClose}
                 >
                   {profileId} 님
                 </Link>
@@ -55,6 +56,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
               <Link
                 className={styles.link}
                 to={'/login'}
+                onClick={onClose}
               >
                 로그인
               </Link>
@@ -66,7 +68,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             aria-label="사이드바 닫기"
           />
         </header>
-        <SidebarOptions />
+        <SidebarOptions onClose={onClose} />
         {isLogin && (
           <button
             className={styles.logout}
