@@ -1,5 +1,5 @@
 import styles from './Join.module.scss';
-import { SignupHeader } from '@/widgets/signup';
+import { SignupHeader } from '@/features/auth/signup';
 
 export const Join = () => {
   return (
