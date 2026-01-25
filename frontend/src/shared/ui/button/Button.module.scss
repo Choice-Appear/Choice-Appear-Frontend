@@ -1,0 +1,59 @@
+.button {
+  padding: 12px 48px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #666;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Variants
+.button--cancel {
+  border: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.button--primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.button--secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+
+  &:hover {
+    background-color: #545b62;
+    border-color: #545b62;
+  }
+}
+
+// Sizes
+.button--small {
+  padding: 8px 32px;
+  font-size: 14px;
+  min-width: 100px;
+}
+
+.button--medium {
+  padding: 12px 48px;
+  font-size: 16px;
+  min-width: 120px;
+}
+
+.button--large {
+  padding: 16px 64px;
+  font-size: 18px;
+  min-width: 140px;
+}
