@@ -15,8 +15,10 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   const { isLogin, profileId, logout } = useAuthStore();
 
   const handleLogout = () => {
-    logout();
-    onClose();
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      logout();
+      onClose();
+    }
 
     // 마이페이지, 위시리스트, 장바구니 페이지에서 로그아웃 시도 시 메인페이지로
     const redirectPages = ['/mypage', 'wishlist', 'mybasket'];
