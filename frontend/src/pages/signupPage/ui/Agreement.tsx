@@ -9,12 +9,6 @@ export const Agreement = () => {
   const navigate = useNavigate();
   const { termsChecked } = useTermsAgreementStore();
 
-  // 페이지를 벗어나려고 할 때 alert 메시지
-  const handleCancel = () => {
-    if (window.confirm('작성하신 내용이 사라집니다. 정말 취소하시겠습니까?'))
-      navigate('/');
-  };
-
   // 새로고침 시 alert 메시지
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -26,6 +20,13 @@ export const Agreement = () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
+
+  // 취소 버튼 클릭 시 alert 메시지
+  const handleCancel = () => {
+    if (window.confirm('작성하신 내용이 사라집니다. 정말 취소하시겠습니까?')) {
+      navigate('/');
+    }
+  };
 
   // 다음 버튼 클릭 시 라우팅
   const handleNext = () => {
