@@ -27,6 +27,9 @@ export const TermsAgreement = () => {
   const handleAllCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const checked = e.target.checked;
     setAllChecked(checked);
+    setTermsChecked(checked);
+    setEmailChecked(checked);
+    setSmsChecked(checked);
   };
 
   return (
