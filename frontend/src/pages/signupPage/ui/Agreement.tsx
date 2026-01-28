@@ -1,9 +1,8 @@
 import styles from './Agreement.module.scss';
 import { Button } from '@/shared/ui/button';
-import { SignupHeader, TermsAgreement } from '@/features/auth/signup';
+import { SignupHeader, TermsAgreement, useTermsAgreementStore } from '@/features/auth/signup';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useTermsAgreementStore } from '@/features/auth/signup/model/useTermsAgreementStore';
 
 export const Agreement = () => {
   const navigate = useNavigate();
