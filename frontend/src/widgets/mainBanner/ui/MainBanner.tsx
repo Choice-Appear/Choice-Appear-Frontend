@@ -1,7 +1,7 @@
 import styles from './MainBanner.module.scss';
 import main1 from '@/shared/assets/main1.png';
 import main2 from '@/shared/assets/main2.png';
-import main3 from '@/shared/assets/main2.png';
+import main3 from '@/shared/assets/main3.png';
 import { SliderIndicator } from '@/shared/ui/slideIndicator';
 import { useState, useEffect } from 'react';
 
