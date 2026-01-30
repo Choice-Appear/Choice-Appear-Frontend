@@ -1,4 +1,4 @@
-import styles from './SignupHeader.module.scss';
+import { StepIndicator } from '@/shared/ui/stepIndicator';
 
 interface SignupHeaderProps {
   currentStep: number;
@@ -12,20 +12,10 @@ export const SignupHeader = ({ currentStep }: SignupHeaderProps) => {
   ];
 
   return (
-    <div className={styles.container}>
-      <h1>회원가입</h1>
-      <ol className={styles.stepList}>
-        {steps.map(step => (
-          <li
-            key={step.id}
-            className={
-              currentStep === step.id ? styles.active : styles.inactive
-            }
-          >
-            {step.id}. {step.label}
-          </li>
-        ))}
-      </ol>
-    </div>
+    <StepIndicator
+      title="회원가입"
+      steps={steps}
+      currentStep={currentStep}
+    />
   );
 };
