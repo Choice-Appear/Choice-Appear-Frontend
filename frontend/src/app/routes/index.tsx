@@ -2,9 +2,9 @@ import MainLayout from '@/shared/ui/MainLayout';
 import NoticeBoard from '@/pages/board/NoticeBoard';
 import LoginPage from '@/pages/loginPage/LoginPage';
 import MainPage from '@/pages/mainPage/MainPage';
-import MyBasket from '@/pages/myBasket/MyBasket';
 import MyPage from '@/pages/myPage/MyPage';
 import WishList from '@/pages/wishList/WishList';
+import { MyBasket } from '@/pages/myBasket';
 import { Cap, Hoodie, Men, Women } from '@/pages/products';
 import { Agreement, Join } from '@/pages/signupPage';
 
