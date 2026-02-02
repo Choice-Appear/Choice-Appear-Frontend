@@ -6,7 +6,7 @@ import MyPage from '@/pages/myPage/MyPage';
 import WishList from '@/pages/wishList/WishList';
 import { MyBasket } from '@/pages/myBasket';
 import { Cap, Hoodie, Men, Women } from '@/pages/products';
-import { Agreement, Join } from '@/pages/signupPage';
+import { Agreement, Join, SignupDone } from '@/pages/signupPage';
 
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -69,12 +69,16 @@ export const router = createBrowserRouter([
     children: [
       {
         path: 'agreement',
-        element: <Agreement />
+        element: <Agreement />,
       },
       {
         path: 'join',
-        element: <Join />
-      }
-    ]
-  }
+        element: <Join />,
+      },
+      {
+        path: 'join-done',
+        element: <SignupDone />,
+      },
+    ],
+  },
 ]);
