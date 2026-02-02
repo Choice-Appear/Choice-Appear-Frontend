@@ -7,20 +7,24 @@ export const SignupForm = () => {
     password,
     passwordCheck,
     nickname,
+    birthDate,
     email,
-    phone,
+    mobilePhone,
+    telephone,
     setProfileId,
     setPassword,
     setPasswordCheck,
     setNickname,
+    setBirthDate,
     setEmail,
     setPhonePrefix,
     setPhoneMiddle,
     setPhoneLast,
+    setTelephone,
   } = useSignupStore();
 
   return (
-    <form id='signup-form'>
+    <form id="signup-form">
       <table className={styles.table}>
         <tbody>
           <tr>
@@ -107,6 +111,28 @@ export const SignupForm = () => {
           </tr>
           <tr>
             <th>
+              <div>
+                <span className={styles.required}>*</span> &nbsp; 생년월일
+              </div>
+            </th>
+            <td>
+              <div>
+                <input
+                  className={styles.input}
+                  id="birthDate"
+                  type="text"
+                  value={birthDate}
+                  onChange={e => setBirthDate(e.target.value)}
+                  required
+                />
+              </div>
+              <div className={styles.guide}>
+                YYYY-MM-DD 형식으로 입력해주세요.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>
               <span className={styles.required}>*</span> &nbsp; 이메일
             </th>
             <td>
@@ -122,13 +148,13 @@ export const SignupForm = () => {
           </tr>
           <tr>
             <th>
-              <span className={styles.required}>*</span> &nbsp; 전화번호
+              <span className={styles.required}>*</span> &nbsp; 휴대전화
             </th>
             <td>
               <div className={styles.phoneInputContainer}>
                 <select
                   className={styles.phonePrefix}
-                  value={phone.prefix}
+                  value={mobilePhone.prefix}
                   onChange={e => setPhonePrefix(e.target.value)}
                 >
                   <option value="010">010</option>
@@ -144,7 +170,7 @@ export const SignupForm = () => {
                   className={styles.phoneInput}
                   placeholder=""
                   maxLength={4}
-                  value={phone.middle}
+                  value={mobilePhone.middle}
                   onChange={e => setPhoneMiddle(e.target.value)}
                   required
                 />
@@ -154,11 +180,23 @@ export const SignupForm = () => {
                   className={styles.phoneInput}
                   placeholder=""
                   maxLength={4}
-                  value={phone.last}
+                  value={mobilePhone.last}
                   onChange={e => setPhoneLast(e.target.value)}
                   required
                 />
               </div>
+            </td>
+          </tr>
+          <tr>
+            <th>전화번호</th>
+            <td>
+              <input
+                className={styles.input}
+                id="tel"
+                value={telephone}
+                onChange={e => setTelephone(e.target.value)}
+                required
+              />
             </td>
           </tr>
         </tbody>

@@ -1,12 +1,22 @@
 import styles from './Agreement.module.scss';
 import { Button } from '@/shared/ui/button';
-import { SignupHeader, TermsAgreement, useTermsAgreementStore } from '@/features/auth/signup';
+import {
+  SignupHeader,
+  TermsAgreement,
+  useSignupStore,
+  useTermsAgreementStore,
+} from '@/features/auth/signup';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export const Agreement = () => {
   const navigate = useNavigate();
-  const { termsChecked } = useTermsAgreementStore();
+  const {
+    termsChecked,
+    privacyChecked,
+    reset: resetTerms,
+  } = useTermsAgreementStore();
+  const { resetForm } = useSignupStore();
 
   // 새로고침 시 alert 메시지
   useEffect(() => {
@@ -23,13 +33,15 @@ export const Agreement = () => {
   // 취소 버튼 클릭 시 alert 메시지
   const handleCancel = () => {
     if (window.confirm('작성하신 내용이 사라집니다. 정말 취소하시겠습니까?')) {
+      resetTerms();
+      resetForm();
       navigate('/');
     }
   };
 
   // 다음 버튼 클릭 시 라우팅
   const handleNext = () => {
-    if (!termsChecked) {
+    if (!termsChecked || !privacyChecked) {
       alert('필수 약관 동의가 필요합니다.');
       return;
     }

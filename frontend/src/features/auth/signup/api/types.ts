@@ -5,8 +5,10 @@ export interface SignupRequest {
   email: string;
   cellPhoneNumber: string;
   generalPhoneNumber: string;
-  smsAgreement: true;
-  emailAgreement: true;
+  smsAgreement: boolean;
+  emailAgreement: boolean;
+  privacyAgreement: boolean;
+  termsAgreement: boolean;
 }
 
 export interface SignupResponse {

@@ -1,33 +1,47 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface TermsAgreementState {
-  termsChecked: boolean;
-  emailChecked: boolean;
   smsChecked: boolean;
-  setTermsChecked: (checked: boolean) => void;
-  setEmailChecked: (checked: boolean) => void;
+  emailChecked: boolean;
+  privacyChecked: boolean;
+  termsChecked: boolean;
   setSmsChecked: (checked: boolean) => void;
+  setEmailChecked: (checked: boolean) => void;
+  setPrivacyChecked: (checked: boolean) => void;
+  setTermsChecked: (checked: boolean) => void;
   setAllChecked: (checked: boolean) => void;
   reset: () => void;
 }
 
-export const useTermsAgreementStore = create<TermsAgreementState>(set => ({
-  termsChecked: false,
-  emailChecked: false,
-  smsChecked: false,
-  setTermsChecked: checked => set({ termsChecked: checked }),
-  setEmailChecked: checked => set({ emailChecked: checked }),
-  setSmsChecked: checked => set({ smsChecked: checked }),
-  setAllChecked: checked =>
-    set({
-      termsChecked: checked,
-      emailChecked: checked,
-      smsChecked: checked,
-    }),
-  reset: () =>
-    set({
-      termsChecked: false,
-      emailChecked: false,
+export const useTermsAgreementStore = create<TermsAgreementState>()(
+  persist(
+    set => ({
       smsChecked: false,
+      emailChecked: false,
+      privacyChecked: false,
+      termsChecked: false,
+      setSmsChecked: checked => set({ smsChecked: checked }),
+      setEmailChecked: checked => set({ emailChecked: checked }),
+      setPrivacyChecked: checked => set({ privacyChecked: checked }),
+      setTermsChecked: checked => set({ termsChecked: checked }),
+      setAllChecked: checked =>
+        set({
+          smsChecked: checked,
+          emailChecked: checked,
+          privacyChecked: checked,
+          termsChecked: checked,
+        }),
+      reset: () =>
+        set({
+          smsChecked: false,
+          emailChecked: false,
+          privacyChecked: false,
+          termsChecked: false,
+        }),
     }),
-}));
+    {
+      name: 'terms-agreement-storage', // localStorage 키 이름
+    }
+  )
+);

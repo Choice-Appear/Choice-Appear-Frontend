@@ -1,15 +1,29 @@
-import { Button } from '@/shared/ui/button';
 import styles from './Join.module.scss';
+import { Button } from '@/shared/ui/button';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import {
   SignupForm,
   SignupHeader,
   useSignupStore,
+  useTermsAgreementStore,
 } from '@/features/auth/signup';
-import { useNavigate } from 'react-router-dom';
 
 export const Join = () => {
   const navigate = useNavigate();
   const { getFullPhoneNumber } = useSignupStore();
+
+  // 새로고침 시 alert
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   // 이전 버튼 클릭 시
   const handleBack = () => {
@@ -18,15 +32,23 @@ export const Join = () => {
 
   const handleSignupSubmit = () => {
     // Store에서 폼 데이터 가져오기
+    const agreementData = useTermsAgreementStore.getState();
     const formData = useSignupStore.getState();
 
     // API 호출을 위한 데이터 구성
     const submitData = {
       profileId: formData.profileId,
-      password: formData.password,
       nickname: formData.nickname,
+      password: formData.password,
+      birthDate: formData.birthDate,
       email: formData.email,
       cellPhoneNumber: getFullPhoneNumber(),
+      generalPhoneNumber: formData.telephone,
+      
+      smsAgreement: agreementData.smsChecked,
+      emailAgreement: agreementData.emailChecked,
+      privacyAgreement: agreementData.privacyChecked,
+      termsAgreement: agreementData.termsChecked,
     };
 
     console.log('회원가입 제출 데이터: ', submitData);
