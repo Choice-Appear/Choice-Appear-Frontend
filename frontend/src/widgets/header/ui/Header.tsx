@@ -1,26 +1,14 @@
 import styles from './Header.module.scss';
 import logo from '@/shared/assets/cna.jpg';
-import {
-  Menu,
-  Search,
-  Bookmark,
-  UserRound,
-  ShoppingCart,
-  ClipboardList,
-} from '@/shared/icons';
+import { Menu, Search, UserRound, ShoppingCart } from '@/shared/icons';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { Sidebar } from '@/widgets/sidebar';
 
 export const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navigate = useNavigate();
-
-  const goToWishlist = () => {
-    navigate('/wishlist');
-  };
 
   const goToMyPage = () => {
     navigate('/mypage');
@@ -32,10 +20,6 @@ export const Header = () => {
 
   const goToHome = () => {
     navigate('/');
-  };
-
-  const goToBoard = () => {
-    navigate('/notice');
   };
 
   const toggleSidebar = () => {
@@ -66,10 +50,7 @@ export const Header = () => {
         {/* 우측 버튼 */}
         <div className={styles.routing}>
           <Search />
-          <Bookmark
-            className={styles.hideOnMobile}
-            onClick={goToWishlist}
-          />
+
           <UserRound
             className={styles.hideOnMobile}
             onClick={goToMyPage}
@@ -78,7 +59,6 @@ export const Header = () => {
             className={styles.hideOnMobile}
             onClick={goToMyBasket}
           />
-          <ClipboardList onClick={goToBoard} />
         </div>
       </div>
 
