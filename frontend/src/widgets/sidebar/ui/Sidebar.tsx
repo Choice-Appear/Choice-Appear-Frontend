@@ -71,6 +71,17 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
           />
         </header>
         <SidebarOptions onClose={onClose} />
+
+        <div className={styles.board}>
+          <Link
+            className={styles.link}
+            to={'/notice'}
+            onClick={onClose}
+          >
+            공지사항
+          </Link>
+        </div>
+
         {isLogin && (
           <button
             className={styles.logout}
