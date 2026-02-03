@@ -1,0 +1,27 @@
+.shoppingInfo,
+.activityInfo,
+.myInfo {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h3 {
+    margin-bottom: 5px;
+  }
+}
+
+.link {
+  text-decoration: none; // 밑줄 제거
+  color: inherit; // 부모 요소의 색상 상속
+
+  &:visited {
+    color: inherit; // 방문한 링크도 동일한 색상 유지
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: inherit; // 모든 상태에서 색상 유지
+  }
+}

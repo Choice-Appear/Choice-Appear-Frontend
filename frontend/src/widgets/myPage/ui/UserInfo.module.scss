@@ -1,0 +1,68 @@
+.summaryWrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 30px 0px;
+}
+
+.summaryCard {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr;
+  border: 1px solid #e7e7e7;
+  background: #fff;
+}
+
+.userArea {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 36px 28px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #bfc7d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userText h3 {
+  font-size: 20px;
+}
+
+.userText p {
+  margin: 0;
+  color: #777;
+}
+
+.stat {
+  text-align: center;
+  padding: 28px 20px;
+  border-left: 1px solid #ececec;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.value {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.label {
+  margin-top: 6px;
+  color: #999;
+  font-size: 13px;
+}
