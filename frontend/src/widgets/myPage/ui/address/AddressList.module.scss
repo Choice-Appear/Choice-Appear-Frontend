@@ -1,0 +1,90 @@
+.myAddress {
+  width: 100%;
+}
+
+.title {
+  font-size: larger;
+  font-weight: 700;
+}
+
+.hr {
+  height: 2px;
+  background: #111;
+  opacity: 0.9;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.addressTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  font-size: 14px;
+
+  thead {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+
+    th {
+      padding: 12px 8px;
+      font-weight: 500;
+      color: #333;
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #dee2e6;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      td {
+        padding: 16px 8px;
+        text-align: center;
+        color: #666;
+
+        &:nth-child(6), // 주소 컬럼
+        &:nth-child(7) {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+}
+
+.addressNameBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #4a90e2;
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+.editButton {
+  padding: 6px 16px;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+  }
+}
