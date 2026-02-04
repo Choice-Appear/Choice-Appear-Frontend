@@ -4,7 +4,7 @@ import { UserRound } from '@/shared/icons';
 
 export const SignupResult = () => {
   // 저장된 가입 정보를 표시
-  const { profileId, nickname, email } = useSignupStore.getState();
+  const { profileId, nickname } = useSignupStore.getState();
   const displayName = nickname || profileId || '회원';
 
   return (
@@ -30,18 +30,8 @@ export const SignupResult = () => {
         </div>
 
         <div className={styles.row}>
-          <dt>이름</dt>
-          <dd>{displayName}</dd>
-        </div>
-
-        <div className={styles.row}>
           <dt>닉네임</dt>
           <dd>{displayName}</dd>
-        </div>
-
-        <div className={styles.row}>
-          <dt>이메일</dt>
-          <dd>{email || '-'}</dd>
         </div>
       </dl>
     </div>

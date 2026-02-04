@@ -1,4 +1,4 @@
-.container p {
+.container {
   margin: 0;
   min-width: 500px;
 }
@@ -22,4 +22,10 @@
 
 .required {
   color: red;
+}
+
+@media (max-width: 768px) {
+  .container {
+    min-width: 450px;
+  }
 }
