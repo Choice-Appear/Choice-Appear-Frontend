@@ -50,15 +50,8 @@ export const Header = () => {
         {/* 우측 버튼 */}
         <div className={styles.routing}>
           <Search />
-
-          <UserRound
-            className={styles.hideOnMobile}
-            onClick={goToMyPage}
-          />
-          <ShoppingCart
-            className={styles.hideOnMobile}
-            onClick={goToMyBasket}
-          />
+          <UserRound onClick={goToMyPage} />
+          <ShoppingCart onClick={goToMyBasket} />
         </div>
       </div>
 
