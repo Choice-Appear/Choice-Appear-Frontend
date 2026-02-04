@@ -1,7 +1,7 @@
 import styles from './MyPage.module.scss';
 import { MyOrder, UserInfo, UserNavigation } from '@/widgets/myPage';
 
-const MyPage = () => {
+export const MyPage = () => {
   return (
     <div className={styles.container}>
       <h1>마이 쇼핑</h1>
@@ -20,5 +20,3 @@ const MyPage = () => {
     </div>
   );
 };
-
-export default MyPage;

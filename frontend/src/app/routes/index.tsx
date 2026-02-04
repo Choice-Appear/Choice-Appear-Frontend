@@ -2,8 +2,8 @@ import MainLayout from '@/shared/ui/MainLayout';
 import NoticeBoard from '@/pages/board/NoticeBoard';
 import LoginPage from '@/pages/loginPage/LoginPage';
 import MainPage from '@/pages/mainPage/MainPage';
-import MyPage from '@/pages/myPage/MyPage';
 import WishList from '@/pages/wishList/WishList';
+import { Coupon, MyPage } from '@/pages/myPage';
 import { MyBasket } from '@/pages/myBasket';
 import { Cap, Hoodie, Men, Women } from '@/pages/products';
 import { Agreement, Join, SignupDone } from '@/pages/signupPage';
@@ -28,16 +28,26 @@ export const router = createBrowserRouter([
         element: <WishList />,
       },
       {
-        path: 'mypage',
-        element: <MyPage />,
-      },
-      {
         path: 'mybasket',
         element: <MyBasket />,
       },
       {
         path: 'notice',
         element: <NoticeBoard />,
+      },
+    ],
+  },
+  {
+    path: '/mypage',
+    element: <MainLayout />,
+    children: [
+      {
+        path: '',
+        element: <MyPage />,
+      },
+      {
+        path: 'coupon',
+        element: <Coupon />,
       },
     ],
   },

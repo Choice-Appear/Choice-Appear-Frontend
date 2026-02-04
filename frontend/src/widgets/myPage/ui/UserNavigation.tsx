@@ -20,7 +20,7 @@ export const UserNavigation = () => {
           적립금 내역
         </Link>
         <Link
-          to={'/'}
+          to={'/mypage/coupon'}
           className={styles.link}
         >
           쿠폰 내역

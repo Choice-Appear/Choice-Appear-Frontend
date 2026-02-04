@@ -1,0 +1,63 @@
+.orderWrap {
+  width: 100%;
+}
+
+.title {
+  font-size: larger;
+  font-weight: 700;
+}
+
+.hr {
+  height: 2px;
+  background: #111;
+  opacity: 0.9;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.boxRow {
+  display: flex;
+  flex-wrap: wrap; // 줄바꿈 허용
+  padding: 37px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eaeaea;
+  gap: 15px;
+
+  p {
+    width: 100%; // 전체 너비 차지하여 다음 줄로 이동
+    text-align: center;
+    margin-top: 4px;
+    font-size: 14px;
+    color: #666;
+  }
+}
+
+.boxItem {
+  flex: 2;
+  padding: 10px 0px;
+  font-size: medium;
+  text-align: center;
+}
+
+.button {
+  flex: 1;
+  padding: 10px 0px;
+}
+
+.couponList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0px;
+
+  p {
+    color: #888;
+  }
+}
+
+.couponAlert {
+  width: 60px;
+  height: 60px;
+  stroke-width: 5%;
+}
