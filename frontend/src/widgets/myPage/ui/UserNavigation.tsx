@@ -26,7 +26,7 @@ export const UserNavigation = () => {
           쿠폰 내역
         </Link>
         <Link
-          to={'/'}
+          to={'/mypage/address'}
           className={styles.link}
         >
           배송 주소록 관리
