@@ -1,5 +1,5 @@
-import { useAuthStore } from '@/shared/stores/authStore';
 import styles from './UserNavigation.module.scss';
+import { useAuthStore } from '@/shared/stores/authStore';
 import { Link, useNavigate } from 'react-router-dom';
 
 export const UserNavigation = () => {
@@ -71,7 +71,7 @@ export const UserNavigation = () => {
       <div className={styles.myInfo}>
         <h3>나의 정보</h3>
         <Link
-          to={'/'}
+          to={'/member/modify'}
           className={styles.link}
         >
           회원 정보 수정

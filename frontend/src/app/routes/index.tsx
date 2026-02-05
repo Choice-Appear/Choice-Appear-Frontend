@@ -3,7 +3,7 @@ import NoticeBoard from '@/pages/board/NoticeBoard';
 import LoginPage from '@/pages/loginPage/LoginPage';
 import MainPage from '@/pages/mainPage/MainPage';
 import WishList from '@/pages/wishList/WishList';
-import { Coupon, MyAddress, MyPage } from '@/pages/myPage';
+import { Coupon, MemberInfo, MyAddress, MyPage } from '@/pages/myPage';
 import { MyBasket } from '@/pages/myBasket';
 import { Cap, Hoodie, Men, Women } from '@/pages/products';
 import { Agreement, Join, SignupDone } from '@/pages/signupPage';
@@ -92,6 +92,10 @@ export const router = createBrowserRouter([
       {
         path: 'join-done',
         element: <SignupDone />,
+      },
+      {
+        path: 'modify',
+        element: <MemberInfo />,
       },
     ],
   },
