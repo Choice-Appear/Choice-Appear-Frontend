@@ -1,7 +1,18 @@
+import { useAuthStore } from '@/shared/stores/authStore';
 import styles from './UserNavigation.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const UserNavigation = () => {
+  const navigate = useNavigate();
+  const { logout } = useAuthStore();
+
+  const handleLogout = () => {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      logout();
+      navigate('/');
+    }
+  };
+
   return (
     <div>
       {/* 나의 쇼핑 정보 */}
@@ -65,12 +76,12 @@ export const UserNavigation = () => {
         >
           회원 정보 수정
         </Link>
-        <Link
-          to={'/'}
-          className={styles.link}
+        <button
+          className={styles.logout}
+          onClick={handleLogout}
         >
           로그아웃
-        </Link>
+        </button>
       </div>
     </div>
   );
