@@ -19,7 +19,7 @@ export const UserNavigation = () => {
       <div className={styles.shoppingInfo}>
         <h3>나의 쇼핑 정보</h3>
         <Link
-          to={'/'}
+          to={'/mypage/order'}
           className={styles.link}
         >
           주문내역 조회
