@@ -54,7 +54,7 @@ export const UserNavigation = () => {
           최근 본 상품
         </Link>
         <Link
-          to={'/'}
+          to={'/wishlist'}
           className={styles.link}
         >
           나의 위시리스트
