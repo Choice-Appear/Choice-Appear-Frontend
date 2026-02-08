@@ -59,7 +59,7 @@ export const AddressList = () => {
     <div className={styles.myAddress}>
       {/* 배송 주소록 */}
       <div>
-        <h3 className={styles.title}>배송 주소록 관리</h3>
+        <h2 className={styles.title}>배송 주소록 관리</h2>
         <div className={styles.hr}></div>
       </div>
 

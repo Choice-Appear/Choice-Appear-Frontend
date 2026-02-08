@@ -10,7 +10,7 @@ export const CouponInput = () => {
     >
       {/* 쿠폰 내역 */}
       <div>
-        <h3 className={styles.title}>쿠폰 내역</h3>
+        <h2 className={styles.title}>쿠폰 내역</h2>
         <div className={styles.hr} />
       </div>
 
