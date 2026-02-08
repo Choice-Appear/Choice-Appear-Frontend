@@ -11,7 +11,7 @@ import {
   OrderList,
 } from '@/pages/myPage';
 import { MyBasket } from '@/pages/myBasket';
-import { Cap, Hoodie, Men, Women } from '@/pages/products';
+import { Cap, Hoodie, Men, RecentView, Women } from '@/pages/products';
 import { Agreement, Join, SignupDone } from '@/pages/signupPage';
 
 import { createBrowserRouter } from 'react-router-dom';
@@ -85,6 +85,10 @@ export const router = createBrowserRouter([
         path: 'hoodie',
         element: <Hoodie />,
       },
+      {
+        path: 'recent-view-products',
+        element: <RecentView />,
+      }
     ],
   },
   {

@@ -48,7 +48,7 @@ export const UserNavigation = () => {
       <div className={styles.activityInfo}>
         <h3>활동 정보</h3>
         <Link
-          to={'/'}
+          to={'/products/recent-view-products'}
           className={styles.link}
         >
           최근 본 상품
