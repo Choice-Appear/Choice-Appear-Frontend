@@ -4,11 +4,11 @@ import { Outlet } from 'react-router-dom';
 
 export default function MainLayout() {
   return (
-    <div>
+    <>
       <Header />
       <main className={styles.layoutMain}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 }
