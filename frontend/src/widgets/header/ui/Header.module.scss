@@ -15,45 +15,92 @@
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-  .menu {
-    cursor: pointer;
+  .logoWrapper {
+    margin: 0;
+    min-width: 0;
   }
 
   .logo {
-    width: 300px;
-    height: 45px;
+    width: clamp(120px, 15vw, 200px); // 반응형 width
+    height: auto; // 비율 유지
     cursor: pointer;
-
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 101;
+    display: block; // img 기본 여백 제거
   }
 
-  .routing {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+  .linkList {
+    position: absolute; // 절대 위치로 정가운데 배치
+    left: 50%;
+    transform: translateX(-50%);
 
-    > * {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .routing {
+      cursor: pointer;
+      text-decoration: none; // 밑줄 제거
+      color: inherit; // 부모 요소의 색상 상속
+      white-space: nowrap; // 텍스트 줄바꿈 방지
+
+      &:visited {
+        color: inherit; // 방문한 링크도 동일한 색상 유지
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: inherit; // 모든 상태에서 색상 유지
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    min-width: 0;
+
+    .iconButton {
+      background: none;
+      border: none;
+      padding: 8px;
+
+      display: flex;
+      align-items: center;
       cursor: pointer;
     }
   }
-}
 
-/* 모바일 스타일 (768px 이하) */
-@media (max-width: 768px) {
-  .container {
-    padding: 0px 10px;
+  /* 모바일 스타일 (768px 이하) */
+  @media (max-width: 768px) {
+    height: var(--header-height-mobile, 60px); // 모바일 헤더 높이
+    padding: 0px 16px; // 좌우 패딩 축소
 
     .logo {
-      width: 180px;
+      width: clamp(100px, 20vw, 140px); // 모바일에서 더 작은 범위
     }
 
-    .routing {
-      gap: 10px;
+    .linkList {
+      gap: clamp(12px, 2vw, 20px); // 모바일 gap 축소
+
+      .routing {
+        font-size: clamp(11px, 2vw, 14px); // 모바일 폰트 크기
+      }
+    }
+
+    .actions {
+      gap: clamp(4px, 1vw, 8px);
+
+      .iconButton {
+        padding: clamp(3px, 0.8vw, 6px);
+
+        svg {
+          width: clamp(18px, 3vw, 20px);
+          height: clamp(18px, 3vw, 20px);
+        }
+      }
     }
   }
 }

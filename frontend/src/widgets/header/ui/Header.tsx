@@ -1,13 +1,9 @@
 import styles from './Header.module.scss';
 import logo from '@/shared/assets/cna.jpg';
-import { Menu, Search, UserRound, ShoppingCart } from '@/shared/icons';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Sidebar } from '@/widgets/sidebar';
+import { Search, UserRound, ShoppingCart } from '@/shared/icons';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Header = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const navigate = useNavigate();
 
   const goToMyPage = () => {
@@ -18,48 +14,80 @@ export const Header = () => {
     navigate('/mybasket');
   };
 
-  const goToHome = () => {
-    navigate('/');
-  };
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
-    <>
-      <div className={styles.container}>
-        {/* 좌측 사이드바 */}
-        <div>
-          <Menu
-            className={styles.menu}
-            onClick={toggleSidebar}
-          />
-        </div>
+    <header>
+      <nav className={styles.container}>
+        {/* 좌측 로고 */}
+        <h1 className={styles.logoWrapper}>
+          <Link to={'/'}>
+            <img
+              src={logo}
+              alt="로고"
+              className={styles.logo}
+            />
+          </Link>
+        </h1>
 
-        {/* 로고 */}
-        <div>
-          <img
-            className={styles.logo}
-            onClick={goToHome}
-            src={logo}
-            alt="로고"
-          />
-        </div>
+        {/* 메인 서비스 라우팅 */}
+        <ul className={styles.linkList}>
+          <li>
+            <Link
+              to={'/'}
+              className={styles.routing}
+            >
+              BRAND
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={'/'}
+              className={styles.routing}
+            >
+              SHOP
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={'/'}
+              className={styles.routing}
+            >
+              JOURNAL
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={'/'}
+              className={styles.routing}
+            >
+              COMMUNITY
+            </Link>
+          </li>
+        </ul>
 
         {/* 우측 버튼 */}
-        <div className={styles.routing}>
-          <Search />
-          <UserRound onClick={goToMyPage} />
-          <ShoppingCart onClick={goToMyBasket} />
+        <div className={styles.actions}>
+          <button
+            type="button"
+            className={styles.iconButton}
+          >
+            <Search />
+          </button>
+          <button
+            type="button"
+            onClick={goToMyPage}
+            className={styles.iconButton}
+          >
+            <UserRound />
+          </button>
+          <button
+            type="button"
+            onClick={goToMyBasket}
+            className={styles.iconButton}
+          >
+            <ShoppingCart />
+          </button>
         </div>
-      </div>
-
-      {/* 사이드바 */}
-      <Sidebar
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-      />
-    </>
+      </nav>
+    </header>
   );
 };
