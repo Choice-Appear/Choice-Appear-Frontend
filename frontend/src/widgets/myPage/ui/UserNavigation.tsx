@@ -25,12 +25,6 @@ export const UserNavigation = () => {
           주문내역 조회
         </Link>
         <Link
-          to={'/'}
-          className={styles.link}
-        >
-          적립금 내역
-        </Link>
-        <Link
           to={'/mypage/coupon'}
           className={styles.link}
         >
