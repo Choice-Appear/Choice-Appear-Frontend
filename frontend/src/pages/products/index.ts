@@ -1,5 +1,5 @@
-export { Women } from './Women';
-export { Men } from './Men';
-export { Cap } from './Cap';
-export { Hoodie } from './Hoodie';
-export { RecentView } from './RecentView';
+export { Women } from './ui/category/Women';
+export { Men } from './ui/category/Men';
+export { Cap } from './ui/category/Cap';
+export { Hoodie } from './ui/category/Hoodie';
+export { RecentView } from './ui/RecentView';
