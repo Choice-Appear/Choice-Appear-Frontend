@@ -2,6 +2,7 @@ import styles from './Header.module.scss';
 import logo from '@/shared/assets/cna.jpg';
 import { Search, UserRound, ShoppingCart } from '@/shared/icons';
 import { Link, useNavigate } from 'react-router-dom';
+import { Dropdown, type MenuProps } from 'antd';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -13,6 +14,42 @@ export const Header = () => {
   const goToMyBasket = () => {
     navigate('/mybasket');
   };
+
+  /* SHOP 드롭다운 */
+  const shopMenuItems: MenuProps['items'] = [
+    {
+      key: 'men',
+      label: <Link to={'/products/men'}>MEN</Link>,
+    },
+    {
+      key: 'women',
+      label: <Link to={'/products/women'}>WOMEN</Link>,
+    },
+    {
+      key: 'cap',
+      label: <Link to={'/products/cap'}>CAP</Link>,
+    },
+    {
+      key: 'hoodie',
+      label: <Link to={'/products/hoodie'}>HOODIE</Link>,
+    },
+  ];
+
+  /* 커뮤니티 드롭다운 */
+  const communityItems: MenuProps['items'] = [
+    {
+      key: 'notice',
+      label: <Link to={'/notice'}>공지사항</Link>,
+    },
+    {
+      key: 'qna',
+      label: <Link to={'/notice'}>Q&A</Link>,
+    },
+    {
+      key: 'diary',
+      label: <Link to={'/notice'}>일기</Link>,
+    },
+  ];
 
   return (
     <header>
@@ -39,12 +76,17 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <Link
-              to={'/'}
-              className={styles.routing}
+            <Dropdown
+              menu={{ items: shopMenuItems }}
+              trigger={['hover']}
             >
-              SHOP
-            </Link>
+              <Link
+                to={'/'}
+                className={styles.routing}
+              >
+                SHOP
+              </Link>
+            </Dropdown>
           </li>
           <li>
             <Link
@@ -55,12 +97,17 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <Link
-              to={'/'}
-              className={styles.routing}
+            <Dropdown
+              menu={{ items: communityItems }}
+              trigger={['hover']}
             >
-              COMMUNITY
-            </Link>
+              <Link
+                to={'/'}
+                className={styles.routing}
+              >
+                COMMUNITY
+              </Link>
+            </Dropdown>
           </li>
         </ul>
 
