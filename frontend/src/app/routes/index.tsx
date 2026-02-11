@@ -11,7 +11,7 @@ import {
   OrderList,
 } from '@/pages/myPage';
 import { MyBasket } from '@/pages/myBasket';
-import { Cap, Hoodie, Men, RecentView, Women } from '@/pages/products';
+import { CategoryList, RecentView } from '@/pages/products';
 import { Agreement, Join, SignupDone } from '@/pages/signupPage';
 
 import { createBrowserRouter } from 'react-router-dom';
@@ -70,25 +70,13 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: 'men',
-        element: <Men />,
-      },
-      {
-        path: 'women',
-        element: <Women />,
-      },
-      {
-        path: 'cap',
-        element: <Cap />,
-      },
-      {
-        path: 'hoodie',
-        element: <Hoodie />,
-      },
-      {
         path: 'recent-view-products',
         element: <RecentView />,
-      }
+      },
+      {
+        path: ':category',
+        element: <CategoryList />,
+      },
     ],
   },
   {
