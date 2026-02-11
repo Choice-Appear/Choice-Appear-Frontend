@@ -1,6 +1,6 @@
-import { UserNavigation } from '@/widgets/myPage';
 import styles from './WishList.module.scss';
-import { ProductsList } from '@/shared/ui/products';
+import { UserViewProducts } from '@/shared/ui/products';
+import { UserNavigation } from '@/widgets/myPage';
 
 const WishList = () => {
   return (
@@ -12,7 +12,7 @@ const WishList = () => {
           <h2>위시리스트</h2>
 
           {/* 위시리스트 상품 목록 */}
-          <ProductsList />
+          <UserViewProducts />
 
           {/* 삭제/전체주문 버튼 */}
         </div>

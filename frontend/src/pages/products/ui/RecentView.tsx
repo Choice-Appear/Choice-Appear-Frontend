@@ -1,6 +1,6 @@
 import styles from './RecentView.module.scss';
+import { UserViewProducts } from '@/shared/ui/products';
 import { UserNavigation } from '@/widgets/myPage';
-import { ProductsList } from '@/shared/ui/products';
 
 export const RecentView = () => {
   return (
@@ -12,7 +12,7 @@ export const RecentView = () => {
           <h2>최근 본 상품</h2>
 
           {/* 최근 본 상품 목록 */}
-          <ProductsList />
+          <UserViewProducts />
 
           {/* 페이지네이션 */}
         </div>

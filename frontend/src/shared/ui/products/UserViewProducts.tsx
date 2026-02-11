@@ -1,4 +1,4 @@
-import styles from './ProductsList.module.scss';
+import styles from './UserViewProducts.module.scss';
 import thumbnail from '@/shared/assets/thumbnail.jpg';
 import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
@@ -18,7 +18,7 @@ const mockProducts: Product[] = [
   { id: 1, thumbnailImage: thumbnail, name: '상품2', price: 43000 },
 ];
 
-export const ProductsList = () => {
+export const UserViewProducts = () => {
   return (
     <div>
       {/* 구분선 */}
