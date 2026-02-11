@@ -1,6 +1,6 @@
+import { ProductsList } from '@/features/products';
 import styles from './CategoryList.module.scss';
 import { ProductsButton } from '@/shared/ui/button';
-import { ProductsList } from '@/shared/ui/products';
 import { useParams } from 'react-router-dom';
 
 export const CategoryList = () => {

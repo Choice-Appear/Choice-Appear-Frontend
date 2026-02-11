@@ -1,5 +1,5 @@
 import styles from './RecentView.module.scss';
-import { UserViewProducts } from '@/shared/ui/products';
+import { UserViewProducts } from '@/features/products';
 import { UserNavigation } from '@/widgets/myPage';
 
 export const RecentView = () => {

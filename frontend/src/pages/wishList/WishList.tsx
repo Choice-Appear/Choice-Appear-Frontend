@@ -1,5 +1,5 @@
 import styles from './WishList.module.scss';
-import { UserViewProducts } from '@/shared/ui/products';
+import { UserViewProducts } from '@/features/products';
 import { UserNavigation } from '@/widgets/myPage';
 
 const WishList = () => {
