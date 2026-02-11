@@ -1,5 +1,5 @@
-import { ProductsList } from '@/features/products';
 import styles from './CategoryList.module.scss';
+import { ProductsList } from '@/features/products';
 import { ProductsButton } from '@/shared/ui/button';
 import { useParams } from 'react-router-dom';
 

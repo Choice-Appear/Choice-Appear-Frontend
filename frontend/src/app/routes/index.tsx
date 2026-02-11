@@ -1,8 +1,6 @@
 import MainLayout from '@/shared/ui/MainLayout';
-import NoticeBoard from '@/pages/board/NoticeBoard';
 import LoginPage from '@/pages/loginPage/LoginPage';
 import MainPage from '@/pages/mainPage/MainPage';
-import WishList from '@/pages/wishList/WishList';
 import {
   Coupon,
   MemberInfo,
@@ -10,9 +8,11 @@ import {
   MyPage,
   OrderList,
 } from '@/pages/myPage';
-import { MyBasket } from '@/pages/myBasket';
-import { CategoryList, RecentView } from '@/pages/products';
 import { Agreement, Join, SignupDone } from '@/pages/signupPage';
+import { CategoryList, RecentView } from '@/pages/products';
+import { MyBasket } from '@/pages/myBasket';
+import { NoticeBoard } from '@/pages/board';
+import { WishList } from '@/pages/wishList';
 
 import { createBrowserRouter } from 'react-router-dom';
 
