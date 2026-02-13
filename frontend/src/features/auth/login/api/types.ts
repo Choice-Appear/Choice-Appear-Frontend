@@ -7,4 +7,5 @@ export interface LoginResponse {
   grantType: string;
   accessToken: string;
   accessTokenExpiresAt: number;
+  nickname: string;
 }

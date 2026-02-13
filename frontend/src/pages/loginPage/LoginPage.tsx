@@ -3,7 +3,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { useLogin } from '@/features/auth/login';
 import { LoginForm } from '@/features/auth/login';
 import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '@/shared/stores/authStore';
+import { useAuthStore } from '@/features/auth/login/model/authStore';
 import { isAxiosError } from 'axios';
 
 const LoginPage = () => {
@@ -39,17 +39,6 @@ const LoginPage = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    // 입력 오류 처리
-    // if (!formData.profileId) {
-    //   alert('아이디를 입력해주세요.');
-    //   return;
-    // }
-
-    // if (!formData.password) {
-    //   alert('비밀번호를 입력해주세요');
-    //   return;
-    // }
-
     // 아이디 저장
     if (saveId) {
       localStorage.setItem('saveId', formData.profileId);
@@ -60,8 +49,13 @@ const LoginPage = () => {
     // 로그인 요청
     loginMutation(formData, {
       onSuccess: response => {
-        const { accessToken } = response.data;
-        login(formData.profileId, accessToken);
+        const { accessToken, accessTokenExpiresAt, nickname } = response.data;
+
+        // 로그인 (쿠키에 토큰 저장)
+        login(formData.profileId, nickname, accessToken, accessTokenExpiresAt);
+
+        // 라우팅
+        navigate('/');
       },
       onError: error => {
         if (isAxiosError(error)) {

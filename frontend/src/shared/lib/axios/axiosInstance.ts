@@ -1,4 +1,5 @@
 import axios, { AxiosError, type AxiosInstance } from 'axios';
+import { getCookie } from '../cookie';
 
 const baseURL = import.meta.env.VITE_API_URL;
 
@@ -15,7 +16,14 @@ export const axiosInstance: AxiosInstance = axios.create({
 /* 요청 인터셉터 */
 axiosInstance.interceptors.request.use(
   config => {
-    // 토큰 필요한 경우 추가
+    // 쿠키에서 토큰 가져오기
+    const token = getCookie('accessToken');
+
+    // 토큰 있으면 Authorizatino 헤더에 추가
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
     return config;
   },
   (error: AxiosError) => {

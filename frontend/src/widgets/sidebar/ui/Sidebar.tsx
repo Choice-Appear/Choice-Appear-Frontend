@@ -2,7 +2,7 @@ import { SidebarOptions } from '@/features/sidebar/SidebarOptions';
 import styles from './Sidebar.module.scss';
 import { X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '@/shared/stores/authStore';
+import { useAuthStore } from '@/features/auth/login/model/authStore';
 
 interface SidebarProps {
   isOpen: boolean;
