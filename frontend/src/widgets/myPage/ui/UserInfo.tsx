@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/features/auth/login/model/authStore';
 import styles from './UserInfo.module.scss';
 import {
   BadgeDollarSign,
@@ -7,6 +8,8 @@ import {
 } from '@/shared/icons';
 
 export const UserInfo = () => {
+  const nickname = useAuthStore(state => state.nickname);
+
   return (
     <section className={styles.summaryWrap}>
       <div className={styles.summaryCard}>
@@ -18,9 +21,7 @@ export const UserInfo = () => {
             <UserRound size={28} />
           </div>
           <div className={styles.userText}>
-            <h3>
-              안녕하세요. jsr2198 님!
-            </h3>
+            <h3>안녕하세요. {nickname} 님!</h3>
           </div>
         </div>
 
