@@ -61,7 +61,17 @@ export const SearchOrderByDate = ({
 
     setStartDate(formatDate(start));
     setEndDate(formatDate(today));
-    setSelectedPeriod(days);  // 선택된 기간 저장
+    setSelectedPeriod(days); // 선택된 기간 저장
+  };
+
+  // 날짜 선택 핸들러
+  const handleOpenCalendar = (e: React.MouseEvent<HTMLInputElement>) => {
+    const target = e.currentTarget;
+    try {
+      target.showPicker?.();
+    } catch (error) {
+      console.log('showPicker not supported: ', error);
+    }
   };
 
   return (
@@ -136,6 +146,7 @@ export const SearchOrderByDate = ({
             name="start-date"
             value={startDate}
             onChange={handleStartDateChange}
+            onClick={handleOpenCalendar}
             aria-label="시작 날짜"
           />
           <span className={styles.dateSeparator}>~</span>
@@ -146,6 +157,7 @@ export const SearchOrderByDate = ({
             value={endDate}
             min={startDate}
             onChange={handleEndDateChange}
+            onClick={handleOpenCalendar}
             aria-label="종료 날짜"
           />
         </div>
