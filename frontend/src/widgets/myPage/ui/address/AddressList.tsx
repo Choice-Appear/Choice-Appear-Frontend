@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './AddressList.module.scss';
 import { useState } from 'react';
 
@@ -12,6 +13,13 @@ interface Address {
 }
 
 export const AddressList = () => {
+  const navigate = useNavigate();
+
+  // 주소록 수정 페이지 라우팅
+  const addressModify = () => {
+    navigate('/mypage/address/modify');
+  };
+
   // mockup 데이터
   const [addresses /*setAddresses*/] = useState<Address[]>([
     {
@@ -105,7 +113,12 @@ export const AddressList = () => {
               <td>{address.mobile}</td>
               <td>{address.address}</td>
               <td>
-                <button className={styles.editButton}>수정</button>
+                <button
+                  className={styles.editButton}
+                  onClick={addressModify}
+                >
+                  수정
+                </button>
               </td>
             </tr>
           ))}

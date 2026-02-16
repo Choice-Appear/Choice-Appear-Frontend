@@ -2,6 +2,7 @@ import MainLayout from '@/shared/ui/MainLayout';
 import LoginPage from '@/pages/loginPage/LoginPage';
 import MainPage from '@/pages/mainPage/MainPage';
 import {
+  AddressModify,
   Coupon,
   MemberInfo,
   MyAddress,
@@ -58,6 +59,14 @@ export const router = createBrowserRouter([
       {
         path: 'address',
         element: <MyAddress />,
+      },
+      {
+        path: 'address/register',
+        element: <AddressModify />,
+      },
+      {
+        path: 'address/modify',
+        element: <AddressModify />,
       },
       {
         path: 'order',
