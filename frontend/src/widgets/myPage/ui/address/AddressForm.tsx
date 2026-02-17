@@ -1,8 +1,76 @@
 import styles from './AddressForm.module.scss';
+import type { AddAddressRequest } from '@/entities/address';
+import { useState } from 'react';
 
-export const AddressForm = () => {
+interface AddressFormProps {
+  onSubmit?: (data: AddAddressRequest) => void;
+  initialData?: Partial<AddAddressRequest>;
+}
+
+export const AddressForm = ({ onSubmit, initialData }: AddressFormProps) => {
+  const [formData, setFormData] = useState<AddAddressRequest>({
+    name: initialData?.name || '',
+    recipient: initialData?.recipient || '',
+    address: initialData?.address || '',
+    cellPhoneNumber: initialData?.cellPhoneNumber || '',
+    generalPhoneNumber: initialData?.generalPhoneNumber || '',
+    isPrimary: initialData?.isPrimary || false,
+  });
+
+  // 휴대전화 번호 분리
+  const [phonePrefix, setPhonePrefix] = useState('010');
+  const [phoneMiddle, setPhoneMiddle] = useState('');
+  const [phoneLast, setPhoneLast] = useState('');
+
+  // 휴대전화 번호 변경 핸들러
+  const handlePhoneChange = (
+    part: 'prefix' | 'middle' | 'last',
+    value: string
+  ) => {
+    let newPrefix = phonePrefix;
+    let newMiddle = phoneMiddle;
+    let newLast = phoneLast;
+
+    if (part === 'prefix') {
+      newPrefix = value;
+      setPhonePrefix(value);
+    }
+    if (part === 'middle') {
+      newMiddle = value;
+      setPhoneMiddle(value);
+    }
+    if (part === 'last') {
+      newLast = value;
+      setPhoneLast(value);
+    }
+
+    // 업데이트된 값으로 조합
+    const fullNumber = `${newPrefix}-${newMiddle}-${newLast}`;
+    setFormData(prev => ({ ...prev, cellPhoneNumber: fullNumber }));
+  };
+
+  // input 변경 핸들러
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // 기본 배송지 체크박스 변경 핸들러
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, isPrimary: e.target.checked }));
+  };
+
+  // 폼 제출
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit?.(formData);
+  };
+
   return (
-    <form id="signup-form">
+    <form
+      id="address-form"
+      onSubmit={handleSubmit}
+    >
       <table className={styles.table}>
         <tbody>
           <tr>
@@ -13,7 +81,9 @@ export const AddressForm = () => {
               <div>
                 <input
                   className={styles.input}
-                  id="address-name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   required
                 />
               </div>
@@ -21,13 +91,15 @@ export const AddressForm = () => {
           </tr>
           <tr>
             <th>
-              <span className={styles.required}>*</span> &nbsp; 성명
+              <span className={styles.required}>*</span> &nbsp; 수령인
             </th>
             <td>
               <div>
                 <input
                   className={styles.input}
-                  id="user-name"
+                  name="recipient"
+                  value={formData.recipient}
+                  onChange={handleInputChange}
                   required
                 />
               </div>
@@ -40,7 +112,9 @@ export const AddressForm = () => {
             <td>
               <input
                 className={styles.input}
-                id="user-address"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
                 required
               />
             </td>
@@ -51,7 +125,11 @@ export const AddressForm = () => {
             </th>
             <td>
               <div className={styles.phoneInputContainer}>
-                <select className={styles.phonePrefix}>
+                <select
+                  className={styles.phonePrefix}
+                  value={phonePrefix}
+                  onChange={e => handlePhoneChange('prefix', e.target.value)}
+                >
                   <option value="010">010</option>
                   <option value="011">011</option>
                   <option value="016">016</option>
@@ -63,7 +141,8 @@ export const AddressForm = () => {
                 <input
                   type="tel"
                   className={styles.phoneInput}
-                  placeholder=""
+                  value={phoneMiddle}
+                  onChange={e => handlePhoneChange('middle', e.target.value)}
                   maxLength={4}
                   required
                 />
@@ -71,7 +150,8 @@ export const AddressForm = () => {
                 <input
                   type="tel"
                   className={styles.phoneInput}
-                  placeholder=""
+                  value={phoneLast}
+                  onChange={e => handlePhoneChange('last', e.target.value)}
                   maxLength={4}
                   required
                 />
@@ -83,8 +163,9 @@ export const AddressForm = () => {
             <td>
               <input
                 className={styles.input}
-                id="tel"
-                required
+                name="generalPhoneNumber"
+                value={formData.generalPhoneNumber}
+                onChange={handleInputChange}
               />
             </td>
           </tr>
@@ -92,8 +173,13 @@ export const AddressForm = () => {
 
         {/* 기본 배송지 여부 체크박스 */}
         <div className={styles.isDefault}>
-          <input type="checkbox" id='default-address' />
-          <label htmlFor='default-address'>기본 배송지로 설정</label>
+          <input
+            type="checkbox"
+            id="isPrimary"
+            checked={formData.isPrimary}
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor="default-address">기본 배송지로 설정</label>
         </div>
       </table>
     </form>
