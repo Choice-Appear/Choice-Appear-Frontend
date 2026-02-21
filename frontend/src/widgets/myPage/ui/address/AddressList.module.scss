@@ -59,11 +59,6 @@
         padding: 16px 8px;
         text-align: center;
         color: #666;
-
-        &:nth-child(6), // 주소 컬럼
-        &:nth-child(7) {
-          text-align: left;
-        }
       }
     }
   }

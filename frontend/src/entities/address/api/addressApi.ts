@@ -23,4 +23,9 @@ export const addressApi = {
 
     return response.data;
   },
+
+  /* 배송지 삭제 */
+  deleteAddress: async (id: number): Promise<void> => {
+    await axiosInstance.delete(`/addresses/${id}`);
+  },
 };

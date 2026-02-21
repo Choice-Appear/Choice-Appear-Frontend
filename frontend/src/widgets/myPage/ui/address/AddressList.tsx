@@ -1,20 +1,26 @@
 import styles from './AddressList.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { useAddressList } from '@/entities/address';
 import { CircleAlert } from 'lucide-react';
 
-export const AddressList = () => {
+interface AddressListProps {
+  selectedIds: number[];
+  setSelectedIds: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
+export const AddressList = ({
+  selectedIds,
+  setSelectedIds,
+}: AddressListProps) => {
   const navigate = useNavigate();
   const { data: addresses = [], isLoading, isError } = useAddressList();
 
-  // 주소록 수정 페이지 라우팅
+  /* 배송지 등록 버튼 라우팅 */
   const addressModify = () => {
     navigate('/mypage/address/modify');
   };
 
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-
+  /* 주소록 선택 체크박스 */
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
       setSelectedIds(addresses.map(address => address.id));
@@ -34,15 +40,9 @@ export const AddressList = () => {
   const isAllSelected =
     addresses.length > 0 && selectedIds.length === addresses.length;
 
+  /* 주소록 목록 로딩 상태 처리 */
   if (isLoading) return <div>로딩중...</div>;
   if (isError) return <div>데이터를 불러오는 데 실패했습니다.</div>;
-  if (addresses.length === 0)
-    return (
-      <div className={styles.addressList}>
-        <CircleAlert className={styles.addressAlert} />
-        <p>등록된 배송지가 없습니다.</p>
-      </div>
-    );
 
   return (
     <div className={styles.myAddress}>
@@ -71,36 +71,49 @@ export const AddressList = () => {
             <th>수정</th>
           </tr>
         </thead>
-        <tbody>
-          {addresses.map(address => (
-            <tr key={address.id}>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={selectedIds.includes(address.id)}
-                  onChange={e => handleSelectOne(address.id, e.target.checked)}
-                />
-              </td>
-              <td>
-                <span className={styles.addressNameBadge}>기본</span>{' '}
-                {address.name}
-              </td>
-              <td>{address.recipient}</td>
-              <td>{address.generalPhoneNumber}</td>
-              <td>{address.cellPhoneNumber}</td>
-              <td>{address.address}</td>
-              <td>
-                <button
-                  className={styles.editButton}
-                  onClick={addressModify}
-                >
-                  수정
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+
+        {addresses.length > 0 && (
+          <tbody>
+            {addresses.map(address => (
+              <tr key={address.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.includes(address.id)}
+                    onChange={e =>
+                      handleSelectOne(address.id, e.target.checked)
+                    }
+                  />
+                </td>
+                <td>
+                  {address.isPrimary && (
+                    <span className={styles.addressNameBadge}>기본</span>
+                  )}
+                  {address.name}
+                </td>
+                <td>{address.recipient}</td>
+                <td>{address.generalPhoneNumber}</td>
+                <td>{address.cellPhoneNumber}</td>
+                <td>{address.address}</td>
+                <td>
+                  <button
+                    className={styles.editButton}
+                    onClick={addressModify}
+                  >
+                    수정
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        )}
       </table>
+      {addresses.length === 0 && (
+        <div className={styles.addressList}>
+          <CircleAlert className={styles.addressAlert} />
+          <p>등록된 배송지가 없습니다.</p>
+        </div>
+      )}
     </div>
   );
 };
