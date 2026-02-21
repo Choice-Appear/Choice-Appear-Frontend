@@ -1,53 +1,32 @@
-/* 배송지 추가 */
-export interface AddAddressRequest {
+export interface AddressRequest {
   name: string;
-  recipient: string;
   address: string;
+  recipient: string;
   cellPhoneNumber: string;
   generalPhoneNumber: string;
   isPrimary: boolean;
 }
 
-export interface AddAddressResponse {
+export interface AddressResponse {
   id: number;
   name: string;
-  recipient: string;
   address: string;
+  recipient: string;
   cellPhoneNumber: string;
   generalPhoneNumber: string;
   isPrimary: boolean;
 }
+
+/* 배송지 추가 */
+export type AddAddressRequest = AddressRequest;
+export type AddAddressResponse = AddressResponse;
 
 /* 배송지 목록 조회 */
-export interface getAddressList {
-  id: number;
-  name: string;
-  recipient: string;
-  address: string;
-  cellPhoneNumber: string;
-  generalPhoneNumber: string;
-  isPrimary: boolean;
-}
+export type GetAddressListResponse = AddressResponse;
 
 /* 배송지 수정 */
-export interface ModifyAddressRequest {
-  name: string;
-  recipient: string;
-  address: string;
-  cellPhoneNumber: string;
-  generalPhoneNumber: string;
-  isPrimary: boolean;
-}
-
-export interface ModifyAddressResponse {
-  id: number;
-  name: string;
-  recipient: string;
-  address: string;
-  cellPhoneNumber: string;
-  generalPhoneNumber: string;
-  isPrimary: boolean;
-}
+export type ModifyAddressRequest = AddressRequest;
+export type ModifyAddressResponse = AddressResponse;
 
 /* 배송지 삭제 */
 export interface DeleteAddressRequest {
