@@ -1,5 +1,9 @@
 import { axiosInstance } from '@/shared/lib/axios';
-import type { AddAddressResponse, AddAddressRequest } from '../model/types';
+import type {
+  AddAddressResponse,
+  AddAddressRequest,
+  GetAddressListResponse,
+} from '../model/types';
 
 export const addressApi = {
   /* 배송지 등록 */
@@ -8,6 +12,14 @@ export const addressApi = {
       '/addresses',
       data
     );
+
+    return response.data;
+  },
+
+  /* 배송지 목록 조회 */
+  getAddressList: async (): Promise<GetAddressListResponse[]> => {
+    const response =
+      await axiosInstance.get<GetAddressListResponse[]>('/addresses');
 
     return response.data;
   },

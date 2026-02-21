@@ -1,52 +1,23 @@
-import { useNavigate } from 'react-router-dom';
 import styles from './AddressList.module.scss';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
-interface Address {
-  id: number;
-  isDefault: boolean;
-  addressName: string;
-  recipient: string;
-  phone: string;
-  mobile: string;
-  address: string;
-}
+import { useAddressList } from '@/entities/address';
+import { CircleAlert } from 'lucide-react';
 
 export const AddressList = () => {
   const navigate = useNavigate();
+  const { data: addresses = [], isLoading, isError } = useAddressList();
 
   // 주소록 수정 페이지 라우팅
   const addressModify = () => {
     navigate('/mypage/address/modify');
   };
 
-  // mockup 데이터
-  const [addresses /*setAddresses*/] = useState<Address[]>([
-    {
-      id: 1,
-      isDefault: false,
-      addressName: '기본',
-      recipient: '홍길동',
-      phone: '02--',
-      mobile: '010-1234-5678',
-      address: '(01234)서울특별시 동작구 123동 456호',
-    },
-    {
-      id: 2,
-      isDefault: false,
-      addressName: '기본',
-      recipient: '임꺽정',
-      phone: '02--',
-      mobile: '010-2345-6789',
-      address: '(01234)서울특별시 동작구 234동 567호',
-    },
-  ]);
-
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
-      setSelectedIds(addresses.map(addr => addr.id));
+      setSelectedIds(addresses.map(address => address.id));
     } else {
       setSelectedIds([]);
     }
@@ -62,6 +33,16 @@ export const AddressList = () => {
 
   const isAllSelected =
     addresses.length > 0 && selectedIds.length === addresses.length;
+
+  if (isLoading) return <div>로딩중...</div>;
+  if (isError) return <div>데이터를 불러오는 데 실패했습니다.</div>;
+  if (addresses.length === 0)
+    return (
+      <div className={styles.addressList}>
+        <CircleAlert className={styles.addressAlert} />
+        <p>등록된 배송지가 없습니다.</p>
+      </div>
+    );
 
   return (
     <div className={styles.myAddress}>
@@ -82,7 +63,6 @@ export const AddressList = () => {
                 onChange={e => handleSelectAll(e.target.checked)}
               />
             </th>
-            <th>주소록 고정</th>
             <th>배송지명</th>
             <th>수령인</th>
             <th>일반전화</th>
@@ -101,16 +81,13 @@ export const AddressList = () => {
                   onChange={e => handleSelectOne(address.id, e.target.checked)}
                 />
               </td>
-              <td>-</td>
               <td>
-                <span className={styles.addressNameBadge}>
-                  {address.addressName}
-                </span>{' '}
-                집
+                <span className={styles.addressNameBadge}>기본</span>{' '}
+                {address.name}
               </td>
               <td>{address.recipient}</td>
-              <td>{address.phone}</td>
-              <td>{address.mobile}</td>
+              <td>{address.generalPhoneNumber}</td>
+              <td>{address.cellPhoneNumber}</td>
               <td>{address.address}</td>
               <td>
                 <button

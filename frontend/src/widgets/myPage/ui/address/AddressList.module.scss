@@ -10,6 +10,24 @@
   margin-top: 12px;
 }
 
+.addressList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0px;
+
+  p {
+    margin-top: 10px;
+    color: #888;
+  }
+}
+
+.addressAlert {
+  width: 60px;
+  height: 60px;
+  stroke-width: 5%;
+}
+
 .addressTable {
   width: 100%;
   border-collapse: collapse;
