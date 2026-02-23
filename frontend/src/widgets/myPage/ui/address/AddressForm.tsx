@@ -164,7 +164,7 @@ export const AddressForm = ({ onSubmit, initialData }: AddressFormProps) => {
               <input
                 className={styles.input}
                 name="generalPhoneNumber"
-                value={formData.generalPhoneNumber}
+                value={formData.generalPhoneNumber ?? ''}
                 onChange={handleInputChange}
               />
             </td>
@@ -179,7 +179,7 @@ export const AddressForm = ({ onSubmit, initialData }: AddressFormProps) => {
             checked={formData.isPrimary}
             onChange={handleCheckboxChange}
           />
-          <label htmlFor="default-address">기본 배송지로 설정</label>
+          <label htmlFor="isPrimary">기본 배송지로 설정</label>
         </div>
       </table>
     </form>

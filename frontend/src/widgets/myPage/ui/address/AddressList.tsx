@@ -1,19 +1,22 @@
 import styles from './AddressList.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { useAddressList } from '@/entities/address';
+import {
+  type GetAddressListResponse,
+} from '@/entities/address';
 import { CircleAlert } from 'lucide-react';
 
 interface AddressListProps {
   selectedIds: number[];
   setSelectedIds: React.Dispatch<React.SetStateAction<number[]>>;
+  addresses: GetAddressListResponse[];
 }
 
 export const AddressList = ({
   selectedIds,
   setSelectedIds,
+  addresses,
 }: AddressListProps) => {
   const navigate = useNavigate();
-  const { data: addresses = [], isLoading, isError } = useAddressList();
 
   /* 배송지 등록 버튼 라우팅 */
   const addressModify = () => {
@@ -39,10 +42,6 @@ export const AddressList = ({
 
   const isAllSelected =
     addresses.length > 0 && selectedIds.length === addresses.length;
-
-  /* 주소록 목록 로딩 상태 처리 */
-  if (isLoading) return <div>로딩중...</div>;
-  if (isError) return <div>데이터를 불러오는 데 실패했습니다.</div>;
 
   return (
     <div className={styles.myAddress}>
@@ -92,7 +91,11 @@ export const AddressList = ({
                   {address.name}
                 </td>
                 <td>{address.recipient}</td>
-                <td>{address.generalPhoneNumber}</td>
+                <td>
+                  {address.generalPhoneNumber === null
+                    ? '-'
+                    : address.generalPhoneNumber}
+                </td>
                 <td>{address.cellPhoneNumber}</td>
                 <td>{address.address}</td>
                 <td>

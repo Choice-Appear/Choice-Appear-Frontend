@@ -3,7 +3,7 @@ export interface AddressRequest {
   address: string;
   recipient: string;
   cellPhoneNumber: string;
-  generalPhoneNumber: string;
+  generalPhoneNumber?: string | null;
   isPrimary: boolean;
 }
 
@@ -13,7 +13,7 @@ export interface AddressResponse {
   address: string;
   recipient: string;
   cellPhoneNumber: string;
-  generalPhoneNumber: string;
+  generalPhoneNumber?: string | null;
   isPrimary: boolean;
 }
 

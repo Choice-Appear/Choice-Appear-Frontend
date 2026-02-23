@@ -5,7 +5,7 @@ export const useDeleteAddress = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: number) => addressApi.deleteAddress(id),
+    mutationFn: (ids: number[]) => addressApi.deleteAddress(ids),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['addressList'] });
     },

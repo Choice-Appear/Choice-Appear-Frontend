@@ -1,4 +1,5 @@
 import styles from './MyAddress.module.scss';
+import { useAddressList } from '@/entities/address';
 import { useDeleteAddress } from '@/entities/address/model/useDeleteAddress';
 import { Button } from '@/shared/ui/button';
 import { AddressList, AddressNotice, UserNavigation } from '@/widgets/myPage';
@@ -9,6 +10,7 @@ export const MyAddress = () => {
   const navigate = useNavigate();
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const { mutateAsync: deleteAddress } = useDeleteAddress();
+  const { data: addresses = [], isLoading, isError } = useAddressList();
 
   /* 주소록 삭제 버튼 핸들러 */
   const handleDelete = async () => {
@@ -20,15 +22,22 @@ export const MyAddress = () => {
 
     // 주소록 삭제
     if (window.confirm('정말 삭제하시겠습니까?')) {
-      await Promise.all(selectedIds.map(id => deleteAddress(id)));
-      setSelectedIds([]);  // 선택 초기화
+      await deleteAddress(selectedIds);
+      setSelectedIds([]); // 선택 초기화
     }
   };
 
   /* 배송지 등록 버튼 핸들러 */
   const registerAddress = () => {
+    if (addresses.length >= 10) {
+      alert('배송지는 최대 10개까지 등록 가능합니다.');
+      return;
+    }
     navigate('/mypage/address/register');
   };
+
+  if (isLoading) return <div>로딩중...</div>;
+  if (isError) return <div>데이터를 불러오는 데 실패했습니다.</div>;
 
   return (
     <div className={styles.container}>
@@ -40,6 +49,7 @@ export const MyAddress = () => {
           <AddressList
             selectedIds={selectedIds}
             setSelectedIds={setSelectedIds}
+            addresses={addresses}
           />
 
           {/* 주소록 추가/삭제 버튼 */}

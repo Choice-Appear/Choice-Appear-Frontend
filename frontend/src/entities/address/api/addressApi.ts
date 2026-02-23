@@ -10,7 +10,7 @@ export const addressApi = {
   addAddress: async (data: AddAddressRequest): Promise<AddAddressResponse> => {
     const response = await axiosInstance.post<AddAddressResponse>(
       '/addresses',
-      data
+      { ...data, generalPhoneNumber: data.generalPhoneNumber || null }
     );
 
     return response.data;
@@ -25,7 +25,9 @@ export const addressApi = {
   },
 
   /* 배송지 삭제 */
-  deleteAddress: async (id: number): Promise<void> => {
-    await axiosInstance.delete(`/addresses/${id}`);
+  deleteAddress: async (ids: number[]): Promise<void> => {
+    await axiosInstance.delete('/addresses', {
+      params: { addressIds: ids.join(',') },
+    });
   },
 };
