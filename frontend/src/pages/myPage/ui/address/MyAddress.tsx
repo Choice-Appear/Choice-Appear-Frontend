@@ -1,6 +1,5 @@
 import styles from './MyAddress.module.scss';
-import { useAddressList } from '@/entities/address';
-import { useDeleteAddress } from '@/entities/address/model/useDeleteAddress';
+import { useAddressList, useDeleteAddress } from '@/entities/address';
 import { Button } from '@/shared/ui/button';
 import { AddressList, AddressNotice, UserNavigation } from '@/widgets/myPage';
 import { useState } from 'react';
