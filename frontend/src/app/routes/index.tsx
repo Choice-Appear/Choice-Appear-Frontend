@@ -65,7 +65,7 @@ export const router = createBrowserRouter([
         element: <AddressModify />,
       },
       {
-        path: 'address/modify',
+        path: 'address/modify/:addressId',
         element: <AddressModify />,
       },
       {
