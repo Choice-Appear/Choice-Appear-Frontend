@@ -24,6 +24,9 @@ export type AddAddressResponse = AddressResponse;
 /* 배송지 목록 조회 */
 export type GetAddressListResponse = AddressResponse;
 
+/* 배송지 단건 조회 */
+export type GetAddressResponse = AddressResponse;
+
 /* 배송지 수정 */
 export type ModifyAddressRequest = AddressRequest;
 export type ModifyAddressResponse = AddressResponse;

@@ -19,8 +19,8 @@ export const AddressList = ({
   const navigate = useNavigate();
 
   /* 배송지 등록 버튼 라우팅 */
-  const addressModify = () => {
-    navigate('/mypage/address/modify');
+  const addressModify = (addressId: number) => {
+    navigate(`/mypage/address/modify/${addressId}`);
   };
 
   /* 주소록 선택 체크박스 */
@@ -101,7 +101,7 @@ export const AddressList = ({
                 <td>
                   <button
                     className={styles.editButton}
-                    onClick={addressModify}
+                    onClick={() => addressModify(address.id)}
                   >
                     수정
                   </button>

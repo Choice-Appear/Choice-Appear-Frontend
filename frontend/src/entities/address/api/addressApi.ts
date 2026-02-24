@@ -3,6 +3,9 @@ import type {
   AddAddressResponse,
   AddAddressRequest,
   GetAddressListResponse,
+  GetAddressResponse,
+  ModifyAddressRequest,
+  ModifyAddressResponse,
 } from '../model/types';
 
 export const addressApi = {
@@ -21,6 +24,26 @@ export const addressApi = {
     const response =
       await axiosInstance.get<GetAddressListResponse[]>('/addresses');
 
+    return response.data;
+  },
+
+  /* 배송지 단일 조회 */
+  getAddress: async (addressId: number): Promise<GetAddressResponse> => {
+    const response = await axiosInstance.get<GetAddressResponse>(
+      `/addresses/${addressId}`
+    );
+    return response.data;
+  },
+
+  /* 배송지 수정 */
+  editAddress: async (
+    addressId: number,
+    data: ModifyAddressRequest
+  ): Promise<ModifyAddressResponse> => {
+    const response = await axiosInstance.put<ModifyAddressResponse>(
+      `/addresses/${addressId}`,
+      { ...data, generalPhoneNumber: data.generalPhoneNumber || null }
+    );
     return response.data;
   },
 

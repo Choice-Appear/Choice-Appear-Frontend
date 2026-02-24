@@ -10,3 +10,5 @@ export type {
 } from './model/types';
 
 export { useAddressList } from './model/useAddressList';
+export { useDeleteAddress } from './model/useDeleteAddress';
+export { useGetAddress } from './model/useGetAddress';
