@@ -1,4 +1,6 @@
+import PrivateRoute from './PrivateRoute';
 import MainLayout from '@/shared/ui/MainLayout';
+
 import LoginPage from '@/pages/loginPage/LoginPage';
 import MainPage from '@/pages/mainPage/MainPage';
 import {
@@ -16,97 +18,122 @@ import { NoticeBoard } from '@/pages/board';
 import { WishList } from '@/pages/wishList';
 
 import { createBrowserRouter } from 'react-router-dom';
+import AuthGuard from './AuthGuard';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <MainLayout />,
+    element: <AuthGuard />,
     children: [
       {
-        index: true,
-        element: <MainPage />,
+        path: '/',
+        element: <MainLayout />,
+        children: [
+          {
+            index: true,
+            element: <MainPage />,
+          },
+          {
+            path: 'login',
+            element: <LoginPage />,
+          },
+          {
+            path: 'notice',
+            element: <NoticeBoard />,
+          },
+
+          /* 보호 라우트 */
+          {
+            element: <PrivateRoute />,
+            children: [
+              {
+                path: 'wishlist',
+                element: <WishList />,
+              },
+              {
+                path: 'mybasket',
+                element: <MyBasket />,
+              },
+            ],
+          },
+        ],
       },
       {
-        path: 'login',
-        element: <LoginPage />,
+        path: '/mypage',
+        element: <MainLayout />,
+        children: [
+          {
+            element: <PrivateRoute />,
+            children: [
+              {
+                path: '',
+                element: <MyPage />,
+              },
+              {
+                path: 'coupon',
+                element: <Coupon />,
+              },
+              {
+                path: 'address',
+                element: <MyAddress />,
+              },
+              {
+                path: 'address/register',
+                element: <AddressModify />,
+              },
+              {
+                path: 'address/modify/:addressId',
+                element: <AddressModify />,
+              },
+              {
+                path: 'order',
+                element: <OrderList />,
+              },
+            ],
+          },
+        ],
       },
       {
-        path: 'wishlist',
-        element: <WishList />,
+        path: '/products',
+        element: <MainLayout />,
+        children: [
+          {
+            path: 'recent-view-products',
+            element: <RecentView />,
+          },
+          {
+            path: ':category',
+            element: <CategoryList />,
+          },
+        ],
       },
       {
-        path: 'mybasket',
-        element: <MyBasket />,
-      },
-      {
-        path: 'notice',
-        element: <NoticeBoard />,
-      },
-    ],
-  },
-  {
-    path: '/mypage',
-    element: <MainLayout />,
-    children: [
-      {
-        path: '',
-        element: <MyPage />,
-      },
-      {
-        path: 'coupon',
-        element: <Coupon />,
-      },
-      {
-        path: 'address',
-        element: <MyAddress />,
-      },
-      {
-        path: 'address/register',
-        element: <AddressModify />,
-      },
-      {
-        path: 'address/modify/:addressId',
-        element: <AddressModify />,
-      },
-      {
-        path: 'order',
-        element: <OrderList />,
-      },
-    ],
-  },
-  {
-    path: '/products',
-    element: <MainLayout />,
-    children: [
-      {
-        path: 'recent-view-products',
-        element: <RecentView />,
-      },
-      {
-        path: ':category',
-        element: <CategoryList />,
-      },
-    ],
-  },
-  {
-    path: '/member',
-    element: <MainLayout />,
-    children: [
-      {
-        path: 'agreement',
-        element: <Agreement />,
-      },
-      {
-        path: 'join',
-        element: <Join />,
-      },
-      {
-        path: 'join-done',
-        element: <SignupDone />,
-      },
-      {
-        path: 'modify',
-        element: <MemberInfo />,
+        path: '/member',
+        element: <MainLayout />,
+        children: [
+          {
+            path: 'agreement',
+            element: <Agreement />,
+          },
+          {
+            path: 'join',
+            element: <Join />,
+          },
+          {
+            path: 'join-done',
+            element: <SignupDone />,
+          },
+
+          /* 보호 라우트 */
+          {
+            element: <PrivateRoute />,
+            children: [
+              {
+                path: 'modify',
+                element: <MemberInfo />,
+              },
+            ],
+          },
+        ],
       },
     ],
   },

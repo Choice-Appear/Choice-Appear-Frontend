@@ -37,6 +37,19 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
+    if (error.response?.status === 401) {
+      const currentPath = window.location.pathname;
+
+      // 로그인 페이지에서 401 발생 시 이벤트 발생 X
+      if (currentPath !== '/login') {
+        window.dispatchEvent(
+          new CustomEvent('unauthorized', {
+            detail: { redirectTo: currentPath },
+          })
+        );
+      }
+    }
+    
     return Promise.reject(error);
   }
 );
