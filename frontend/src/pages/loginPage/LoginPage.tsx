@@ -2,12 +2,14 @@ import styles from './LoginPage.module.scss';
 import { useEffect, useState, type FormEvent } from 'react';
 import { useLogin } from '@/features/auth/login';
 import { LoginForm } from '@/features/auth/login';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuthStore } from '@/features/auth/login/model/authStore';
 import { isAxiosError } from 'axios';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
   const login = useAuthStore(state => state.login);
   const isLogin = useAuthStore(state => state.isLogin);
 
@@ -23,9 +25,10 @@ const LoginPage = () => {
   // 이미 로그인 된 경우 리다이렉트 처리
   useEffect(() => {
     if (isLogin) {
-      navigate('/');
+      const redirectTo = searchParams.get('redirect') || '/';
+      navigate(redirectTo, { replace: true });
     }
-  }, [isLogin, navigate]);
+  }, [isLogin, navigate, searchParams]);
 
   // 저장된 아이디 불러오기
   useEffect(() => {
@@ -53,9 +56,6 @@ const LoginPage = () => {
 
         // 로그인 (쿠키에 토큰 저장)
         login(formData.profileId, nickname, accessToken, accessTokenExpiresAt);
-
-        // 라우팅
-        navigate('/');
       },
       onError: error => {
         if (isAxiosError(error)) {
