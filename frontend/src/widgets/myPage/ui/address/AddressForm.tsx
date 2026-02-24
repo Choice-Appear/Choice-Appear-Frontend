@@ -18,9 +18,11 @@ export const AddressForm = ({ onSubmit, initialData }: AddressFormProps) => {
   });
 
   // 휴대전화 번호 분리
-  const [phonePrefix, setPhonePrefix] = useState('010');
-  const [phoneMiddle, setPhoneMiddle] = useState('');
-  const [phoneLast, setPhoneLast] = useState('');
+  const initialPhone = initialData?.cellPhoneNumber?.split('-') ?? [];
+
+  const [phonePrefix, setPhonePrefix] = useState(initialPhone[0] || '010');
+  const [phoneMiddle, setPhoneMiddle] = useState(initialPhone[1] || '');
+  const [phoneLast, setPhoneLast] = useState(initialPhone[2] || '');
 
   // 휴대전화 번호 변경 핸들러
   const handlePhoneChange = (
@@ -170,18 +172,18 @@ export const AddressForm = ({ onSubmit, initialData }: AddressFormProps) => {
             </td>
           </tr>
         </tbody>
-
-        {/* 기본 배송지 여부 체크박스 */}
-        <div className={styles.isDefault}>
-          <input
-            type="checkbox"
-            id="isPrimary"
-            checked={formData.isPrimary}
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor="isPrimary">기본 배송지로 설정</label>
-        </div>
       </table>
+
+      {/* 기본 배송지 여부 체크박스 */}
+      <div className={styles.isDefault}>
+        <input
+          type="checkbox"
+          id="isPrimary"
+          checked={formData.isPrimary}
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor="isPrimary">기본 배송지로 설정</label>
+      </div>
     </form>
   );
 };
