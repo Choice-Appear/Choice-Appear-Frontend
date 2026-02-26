@@ -1,13 +1,12 @@
 import styles from './LoginPage.module.scss';
 import { useEffect, useState, type FormEvent } from 'react';
-import { useLogin } from '@/features/auth/login';
-import { LoginForm } from '@/features/auth/login';
+import { useAuthStore, useLogin } from '@/features/login';
+import { LoginForm } from '@/features/login';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useAuthStore } from '@/features/auth/login/model/authStore';
 import { isAxiosError } from 'axios';
 import { getCookie } from '@/shared/lib/cookie';
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();

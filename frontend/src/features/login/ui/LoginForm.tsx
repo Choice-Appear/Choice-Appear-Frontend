@@ -1,7 +1,7 @@
-import { LoginButton } from '@/features/buttons';
+import { LoginButton } from '@/features/login';
 import styles from './LoginForm.module.scss';
 import type { ChangeEvent, FormEvent } from 'react';
-import { SocialLogin } from '@/features/auth/socialLogin';
+import { SocialLogin } from '@/features/socialLogin';
 import { Link } from 'react-router-dom';
 
 interface LoginFormData {

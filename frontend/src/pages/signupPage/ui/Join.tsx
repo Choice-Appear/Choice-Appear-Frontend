@@ -7,7 +7,7 @@ import {
   SignupHeader,
   useSignupStore,
   useTermsAgreementStore,
-} from '@/features/auth/signup';
+} from '@/features/signup';
 
 export const Join = () => {
   const navigate = useNavigate();

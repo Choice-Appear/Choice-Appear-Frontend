@@ -1,6 +1,6 @@
 import styles from './SignupDone.module.scss';
-import { SignupHeader } from '@/features/auth/signup';
-import { SignupResult } from '@/features/auth/signup/ui/SignupResult';
+import { SignupHeader } from '@/features/signup';
+import { SignupResult } from '@/features/signup/ui/SignupResult';
 import { Button } from '@/shared/ui/button';
 import { useNavigate } from 'react-router-dom';
 

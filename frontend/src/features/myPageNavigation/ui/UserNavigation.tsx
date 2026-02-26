@@ -1,5 +1,5 @@
 import styles from './UserNavigation.module.scss';
-import { useAuthStore } from '@/features/auth/login/model/authStore';
+import { useAuthStore } from '@/features/login';
 import { Link, useNavigate } from 'react-router-dom';
 
 export const UserNavigation = () => {

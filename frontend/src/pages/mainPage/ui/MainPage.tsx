@@ -2,7 +2,7 @@ import styles from './MainPage.module.scss';
 import { ProductsCategories } from '@/widgets/mainPage';
 import { MainBanner } from '@/widgets/mainBanner';
 
-const MainPage = () => {
+export const MainPage = () => {
   return (
     <div>
       {/* 메인 배너 슬라이더 */}

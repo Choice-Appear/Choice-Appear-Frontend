@@ -1,11 +1,9 @@
 import styles from './OrderList.module.scss';
 import { useState } from 'react';
 import type { OrderTab } from '@/widgets/myPage/model/types';
-import {
-  UserNavigation,
-  SearchOrderByDate,
-  OrderSearchNotice,
-} from '@/widgets/myPage';
+import { UserNavigation } from '@/features/myPageNavigation';
+import { OrderSearchNotice, SearchOrderByDate } from '@/features/order';
+
 
 export const OrderList = () => {
   const [activeTab, setActiveTab] = useState<OrderTab>('order');

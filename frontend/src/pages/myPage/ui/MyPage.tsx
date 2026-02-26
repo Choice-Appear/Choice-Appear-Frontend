@@ -1,5 +1,7 @@
 import styles from './MyPage.module.scss';
-import { MyOrder, UserInfo, UserNavigation } from '@/widgets/myPage';
+import { UserInfo } from '@/widgets/myPage';
+import { UserNavigation } from '@/features/myPageNavigation';
+import { MyOrder } from '@/features/order/ui/MyOrder';
 
 export const MyPage = () => {
   return (

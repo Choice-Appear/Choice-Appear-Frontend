@@ -1,9 +1,10 @@
+import { UserNavigation } from '@/features/myPageNavigation';
 import styles from './MyAddress.module.scss';
-import { useAddressList, useDeleteAddress } from '@/entities/address';
+import { AddressList, AddressNotice } from '@/features/address';
 import { Button } from '@/shared/ui/button';
-import { AddressList, AddressNotice, UserNavigation } from '@/widgets/myPage';
-import { useState } from 'react';
+import { useAddressList, useDeleteAddress } from '@/entities/address';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export const MyAddress = () => {
   const navigate = useNavigate();

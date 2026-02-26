@@ -5,7 +5,7 @@ import {
   TermsAgreement,
   useSignupStore,
   useTermsAgreementStore,
-} from '@/features/auth/signup';
+} from '@/features/signup';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 

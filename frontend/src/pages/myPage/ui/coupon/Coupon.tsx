@@ -1,5 +1,6 @@
-import { CouponInput, UserNavigation } from '@/widgets/myPage';
 import styles from './Coupon.module.scss';
+import { CouponInput } from '@/features/coupon';
+import { UserNavigation } from '@/features/myPageNavigation';
 
 export const Coupon = () => {
   return (

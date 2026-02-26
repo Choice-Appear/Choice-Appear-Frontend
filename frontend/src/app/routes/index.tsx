@@ -1,8 +1,8 @@
 import PrivateRoute from './PrivateRoute';
 import MainLayout from '@/shared/ui/MainLayout';
 
-import LoginPage from '@/pages/loginPage/LoginPage';
-import MainPage from '@/pages/mainPage/MainPage';
+import LoginPage from '@/pages/loginPage/ui/LoginPage';
+import MainPage from '@/pages/mainPage/ui/MainPage';
 import {
   AddressModify,
   Coupon,

@@ -1,6 +1,6 @@
 import styles from './MemberInfo.module.scss';
 import { Button } from '@/shared/ui/button';
-import { SignupForm } from '@/features/auth/signup';
+import { SignupForm } from '@/features/signup';
 
 export const MemberInfo = () => {
   return (

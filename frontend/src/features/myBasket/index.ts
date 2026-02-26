@@ -1,1 +1,1 @@
-export { MyBasketHeader } from './MyBasketHeader';
+export { MyBasketHeader } from './ui/MyBasketHeader';

@@ -1,5 +1,5 @@
-import { useAuthStore } from '@/features/auth/login/model/authStore';
 import styles from './UserInfo.module.scss';
+import { useAuthStore } from '@/features/login';
 import {
   BadgeDollarSign,
   BadgePercent,

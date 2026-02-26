@@ -1,6 +1,5 @@
 import styles from './AddressModify.module.scss';
 import { Button } from '@/shared/ui/button';
-import { AddressForm, UserNavigation } from '@/widgets/myPage';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
@@ -8,6 +7,8 @@ import {
   useGetAddress,
   type AddAddressRequest,
 } from '@/entities/address';
+import { UserNavigation } from '@/features/myPageNavigation';
+import { AddressForm } from '@/features/address';
 
 export const AddressModify = () => {
   const navigate = useNavigate();

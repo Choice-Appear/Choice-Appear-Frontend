@@ -1,1 +1,1 @@
-export { BoardMenu } from './BoardMenu';
+export { BoardMenu } from './ui/BoardMenu';
