@@ -1,6 +1,6 @@
 export interface Board {
   id: number;
-  accountId: number;
+  nickname: string;
   title: string;
   contents: string;
   viewCount: number;

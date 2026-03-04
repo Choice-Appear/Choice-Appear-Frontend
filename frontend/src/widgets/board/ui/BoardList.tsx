@@ -53,7 +53,7 @@ export const BoardList = () => {
                   <span className={styles.titleText}>{board.title}</span>
                 </td>
                 <td className={`${styles.cell} ${styles.author}`}>
-                  {board.accountId}
+                  {board.nickname}
                 </td>
                 <td className={`${styles.cell} ${styles.date}`}>
                   {board.createdAt.split('T')[0]}
