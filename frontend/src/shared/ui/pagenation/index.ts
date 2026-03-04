@@ -1,0 +1,1 @@
+export { BoardPagenation } from './BoardPagenation';

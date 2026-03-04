@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 40px auto;
+}
+
+.arrow {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.page {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 14px;
+  padding: 4px 8px;
+
+  &.active {
+    font-weight: bold;
+  }
+}

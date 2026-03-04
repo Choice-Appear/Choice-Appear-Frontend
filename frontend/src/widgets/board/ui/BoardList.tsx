@@ -1,11 +1,26 @@
+import { BoardPagenation } from '@/shared/ui/pagenation';
+import { useBoardList } from '../model/useBoardList';
 import styles from './BoardList.module.scss';
-import { mockBoards } from '../api/boardList';
 
 export const BoardList = () => {
+  const {
+    boards,
+    totalPages,
+    first,
+    last,
+    currentPage,
+    setCurrentPage,
+    isLoading,
+    isError,
+  } = useBoardList();
+
+  /* 게시글 상세 페이지 이동 (추후 구현) */
   const handleBoardClick = (id: number) => {
-    // 게시글 상세 페이지로 이동 (추후 구현)
     console.log(`게시글 ${id} 클릭`);
   };
+
+  if (isLoading) return <div>로딩 중...</div>;
+  if (isError) return <p>게시글을 불러오는 데 실패했습니다.</p>;
 
   return (
     <div className={styles.container}>
@@ -20,35 +35,45 @@ export const BoardList = () => {
           </tr>
         </thead>
         <tbody className={styles.body}>
-          {mockBoards.map(board => (
-            <tr
-              key={board.id}
-              className={styles.row}
-              onClick={() => handleBoardClick(board.id)}
-            >
-              <td className={`${styles.cell} ${styles.number}`}>{board.id}</td>
-              <td className={`${styles.cell} ${styles.title}`}>
-                <span className={styles.titleText}>{board.title}</span>
-              </td>
-              <td className={`${styles.cell} ${styles.author}`}>
-                {board.author}
-              </td>
-              <td className={`${styles.cell} ${styles.date}`}>
-                {board.created_at}
-              </td>
-              <td className={`${styles.cell} ${styles.views}`}>
-                {board.view_count.toLocaleString()}
-              </td>
+          {boards.length === 0 ? (
+            <tr>
+              <td className={styles.empty}>등록된 게시글이 없습니다.</td>
             </tr>
-          ))}
+          ) : (
+            boards.map(board => (
+              <tr
+                key={board.id}
+                className={styles.row}
+                onClick={() => handleBoardClick(board.id)}
+              >
+                <td className={`${styles.cell} ${styles.number}`}>
+                  {board.id}
+                </td>
+                <td className={`${styles.cell} ${styles.title}`}>
+                  <span className={styles.titleText}>{board.title}</span>
+                </td>
+                <td className={`${styles.cell} ${styles.author}`}>
+                  {board.accountId}
+                </td>
+                <td className={`${styles.cell} ${styles.date}`}>
+                  {board.createdAt.split('T')[0]}
+                </td>
+                <td className={`${styles.cell} ${styles.views}`}>
+                  {board.viewCount.toLocaleString()}
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
 
-      {mockBoards.length === 0 && (
-        <div className={styles.empty}>
-          <p>등록된 게시글이 없습니다.</p>
-        </div>
-      )}
+      <BoardPagenation
+        currentPage={currentPage}
+        totalPages={totalPages}
+        first={first}
+        last={last}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 };
