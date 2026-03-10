@@ -1,5 +1,5 @@
 import axios, { AxiosError, type AxiosInstance } from 'axios';
-import { getCookie } from '../cookie';
+import { getCookie, removeCookie, setCookie } from '../cookie';
 
 const baseURL = import.meta.env.VITE_API_URL;
 
@@ -13,13 +13,24 @@ export const axiosInstance: AxiosInstance = axios.create({
   timeout: 30000,
 });
 
+/* refresh 진행 */
+const dispatchUnauthorized = (redirectTo: string) => {
+  if (redirectTo !== '/login') {
+    window.dispatchEvent(
+      new CustomEvent('unauthorized', {
+        detail: { redirectTo },
+      })
+    );
+  }
+};
+
 /* 요청 인터셉터 */
 axiosInstance.interceptors.request.use(
   config => {
     // 쿠키에서 토큰 가져오기
     const token = getCookie('accessToken');
 
-    // 토큰 있으면 Authorizatino 헤더에 추가
+    // 토큰 있으면 Authorization 헤더에 추가
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -33,23 +44,43 @@ axiosInstance.interceptors.request.use(
 
 /* 응답 인터셉터 */
 axiosInstance.interceptors.response.use(
-  response => {
-    return response;
-  },
-  (error: AxiosError) => {
-    if (error.response?.status === 401) {
-      const currentPath = window.location.pathname;
+  response => response,
+  async (error: AxiosError) => {
+    const originalRequest = error.config as typeof error.config & {
+      _retry?: boolean;
+    };
 
-      // 로그인 페이지에서 401 발생 시 이벤트 발생 X
-      if (currentPath !== '/login') {
-        window.dispatchEvent(
-          new CustomEvent('unauthorized', {
-            detail: { redirectTo: currentPath },
-          })
-        );
-      }
+    if (error.response?.status !== 401 || originalRequest._retry) {
+      return Promise.reject(error);
     }
-    
-    return Promise.reject(error);
+
+    const currentPath = window.location.pathname;
+
+    // refresh 요청 자체가 401
+    if (originalRequest.url?.includes('/auth/refresh')) {
+      removeCookie('accessToken');
+      dispatchUnauthorized(currentPath);
+      return Promise.reject(error);
+    }
+
+    // refresh 시도
+    originalRequest._retry = true;
+
+    try {
+      const response = await axiosInstance.post('/auth/refresh');
+      const { accessToken, accessTokenExpiresAt } = response.data;
+
+      setCookie('accessToken', accessToken, {
+        expires: new Date(accessTokenExpiresAt),
+      });
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+      originalRequest.headers!.Authorization = `Bearer ${accessToken}`;
+      return axiosInstance(originalRequest);
+    } catch (refreshError) {
+      removeCookie('accessToken');
+      dispatchUnauthorized(currentPath);
+      return Promise.reject(refreshError);
+    }
   }
 );

@@ -1,11 +1,17 @@
-import { getCookie } from '@/shared/lib/cookie';
+import { useAuthStore } from '@/features/login';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const PrivateRoute = () => {
   const location = useLocation();
-  const token = getCookie('accessToken');
+  const { isLogin, isAuthReady } = useAuthStore();
 
-  if (!token) {
+  /* 앱 초기화(토큰 검증) 전 */
+  if (!isAuthReady) {
+    return null;
+  }
+
+  /* 인증되지 않은 사용자 접근 차단 */
+  if (!isLogin) {
     return (
       <Navigate
         to={`/login?redirect=${location.pathname}`}

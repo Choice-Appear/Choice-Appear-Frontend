@@ -9,3 +9,10 @@ export interface LoginResponse {
   accessTokenExpiresAt: number;
   nickname: string;
 }
+
+export interface RefreshResponse {
+  grantType: string;
+  accessToken: string;
+  accessTokenExpiresAt: number;
+  nickname: string;
+}
