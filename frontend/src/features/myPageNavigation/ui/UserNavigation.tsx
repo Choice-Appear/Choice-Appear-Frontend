@@ -1,15 +1,13 @@
 import styles from './UserNavigation.module.scss';
-import { useAuthStore } from '@/features/login';
-import { Link, useNavigate } from 'react-router-dom';
+import { useLogout } from '@/features/login';
+import { Link } from 'react-router-dom';
 
 export const UserNavigation = () => {
-  const navigate = useNavigate();
-  const { logout } = useAuthStore();
+  const { mutate: logoutMutate } = useLogout();
 
   const handleLogout = () => {
     if (window.confirm('로그아웃 하시겠습니까?')) {
-      logout();
-      navigate('/');
+      logoutMutate();
     }
   };
 
