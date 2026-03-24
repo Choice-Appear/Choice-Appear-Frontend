@@ -75,13 +75,14 @@ export const useAuthStore = create<AuthStore>()(
         // accessToken 없으면 refresh 시도
         try {
           const { data } = await authApi.refresh();
-          set({ isLogin: true, isAuthReady: true, nickname: data.nickname });
+          set({ isLogin: true, isAuthReady: true, isLogout: false, nickname: data.nickname });
           setCookie('accessToken', data.accessToken, {
             expires: new Date(data.accessTokenExpiresAt),
           });
         } catch {
           set({
             isLogin: false,
+            isLogout: false,
             profileId: null,
             nickname: null,
             isAuthReady: true,
