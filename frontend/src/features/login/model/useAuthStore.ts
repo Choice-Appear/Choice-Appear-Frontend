@@ -5,7 +5,6 @@ import { authApi } from '../api/authApi';
 
 interface AuthStore {
   isLogin: boolean;
-  isLogout: boolean;
   isAuthReady: boolean;
   profileId: string | null;
   nickname: string | null;
@@ -37,7 +36,7 @@ export const useAuthStore = create<AuthStore>()(
         expiresAt: number
       ) => {
         // Zustand 업데이트
-        set({ isLogin: true, isLogout: false, profileId, nickname });
+        set({ isLogin: true, profileId, nickname });
 
         // 쿠키에 토큰 저장
         setCookie('accessToken', token, { expires: new Date(expiresAt) });
@@ -48,7 +47,6 @@ export const useAuthStore = create<AuthStore>()(
         // Zustand state 초기화
         set({
           isLogin: false,
-          isLogout: true,
           profileId: null,
           nickname: null,
         });
@@ -65,6 +63,7 @@ export const useAuthStore = create<AuthStore>()(
       /* 앱 초기화 시 토큰 상태 검증 */
       initAuth: async () => {
         const token = getCookie('accessToken');
+        const { profileId } = useAuthStore.getState();
 
         // accessToken 있으면 인증 완료
         if (token) {
@@ -72,17 +71,26 @@ export const useAuthStore = create<AuthStore>()(
           return;
         }
 
-        // accessToken 없으면 refresh 시도
+        // 로그아웃 시에는 refresh 시도 X
+        if (!profileId) {
+          set({ isLogin: false, isAuthReady: true });
+          return;
+        }
+
+        // profileId 있으면 refresh 시도
         try {
           const { data } = await authApi.refresh();
-          set({ isLogin: true, isAuthReady: true, isLogout: false, nickname: data.nickname });
+          set({
+            isLogin: true,
+            isAuthReady: true,
+            nickname: data.nickname,
+          });
           setCookie('accessToken', data.accessToken, {
             expires: new Date(data.accessTokenExpiresAt),
           });
         } catch {
           set({
             isLogin: false,
-            isLogout: false,
             profileId: null,
             nickname: null,
             isAuthReady: true,

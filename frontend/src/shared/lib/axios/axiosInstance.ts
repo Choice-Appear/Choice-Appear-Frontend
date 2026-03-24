@@ -54,6 +54,11 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(error);
     }
 
+    // logout 요청이 401이면 refresh 시도 없이 통과
+    if (originalRequest.url?.includes('/auth/logout')) {
+      return Promise.reject(error);
+    }
+
     const currentPath = window.location.pathname;
 
     // refresh 요청 자체가 401
