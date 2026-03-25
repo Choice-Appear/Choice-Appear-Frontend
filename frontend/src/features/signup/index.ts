@@ -6,5 +6,6 @@ export { SignupHeader } from './ui/SignupHeader';
 export { SignupResult } from './ui/SignupResult';
 export { TermsAgreement } from './ui/TermsAgreement';
 
+export { signupApi } from './api/signupApi';
 export { useSignupStore } from './model/useSignupStore';
 export { useTermsAgreementStore } from './model/useTermsAgreementStore';

@@ -32,13 +32,17 @@ export const useTermsAgreementStore = create<TermsAgreementState>()(
           privacyChecked: checked,
           termsChecked: checked,
         }),
-      reset: () =>
+      reset: () => {
+        useTermsAgreementStore.persist.clearStorage(); // 스토리지 먼저 삭제
+
+        // 상태 초기화
         set({
           smsChecked: false,
           emailChecked: false,
           privacyChecked: false,
           termsChecked: false,
-        }),
+        });
+      },
     }),
     {
       name: 'terms-agreement-storage', // localStorage 키 이름

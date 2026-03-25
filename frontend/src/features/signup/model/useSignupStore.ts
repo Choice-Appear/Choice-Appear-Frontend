@@ -64,7 +64,7 @@ export const useSignupStore = create<SignupStore>()(
       setPasswordCheck: passwordCheck => set({ passwordCheck }),
 
       setNickname: nickname => set({ nickname }),
-      
+
       setBirthDate: birthDate => set({ birthDate }),
 
       setEmail: email => set({ email }),
@@ -83,15 +83,18 @@ export const useSignupStore = create<SignupStore>()(
         set(state => ({
           mobilePhone: { ...state.mobilePhone, last },
         })),
-      
-      setTelephone: telephone => set({telephone}),
+
+      setTelephone: telephone => set({ telephone }),
 
       // 폼 초기화
-      resetForm: () => set(initialState),
+      resetForm: () => {
+        useSignupStore.persist.clearStorage();  // 스토리지 삭제 먼저
+        set(initialState);  // 상태 초기화
+      },
 
       getFullPhoneNumber: () => {
         const { mobilePhone } = get();
-        return `${mobilePhone.prefix}-${mobilePhone.middle}-${mobilePhone.last}`;
+        return `${mobilePhone.prefix}${mobilePhone.middle}${mobilePhone.last}`;
       },
     }),
     {

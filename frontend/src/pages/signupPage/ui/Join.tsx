@@ -8,10 +8,12 @@ import {
   useSignupStore,
   useTermsAgreementStore,
 } from '@/features/signup';
+import { useSignupMutation } from '@/features/signup/model/useSignupMutation';
 
 export const Join = () => {
   const navigate = useNavigate();
   const { getFullPhoneNumber } = useSignupStore();
+  const { mutate: signup } = useSignupMutation();
 
   // 새로고침 시 alert
   useEffect(() => {
@@ -43,8 +45,8 @@ export const Join = () => {
       birthDate: formData.birthDate,
       email: formData.email,
       cellPhoneNumber: getFullPhoneNumber(),
-      generalPhoneNumber: formData.telephone,
-      
+      generalPhoneNumber: formData.telephone || null,
+
       smsAgreement: agreementData.smsChecked,
       emailAgreement: agreementData.emailChecked,
       privacyAgreement: agreementData.privacyChecked,
@@ -52,6 +54,8 @@ export const Join = () => {
     };
 
     console.log('회원가입 제출 데이터: ', submitData);
+    // 회원가입 API 호출
+    signup(submitData);
   };
 
   return (
