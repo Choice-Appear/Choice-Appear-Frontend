@@ -7,5 +7,11 @@ export { SignupResult } from './ui/SignupResult';
 export { TermsAgreement } from './ui/TermsAgreement';
 
 export { signupApi } from './api/signupApi';
+export { profileIdCheck } from './api/duplicatedCheckApi';
+export { nicknameCheck } from './api/duplicatedCheckApi';
+
 export { useSignupStore } from './model/useSignupStore';
 export { useTermsAgreementStore } from './model/useTermsAgreementStore';
+export { useSignupMutation } from './model/useSignupMutation';
+export { useCheckProfileId } from './model/useDuplicatedCheckMutation';
+export { useCheckNickname } from './model/useDuplicatedCheckMutation';

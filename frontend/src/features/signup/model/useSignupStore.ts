@@ -14,6 +14,8 @@ interface SignupForm {
     last: string;
   };
   telephone: string;
+  isProfileIdAvailable: boolean | null;
+  isNicknameAvailable: boolean | null;
 }
 
 interface SignupStore extends SignupForm {
@@ -32,6 +34,10 @@ interface SignupStore extends SignupForm {
   // 유틸리티 함수
   resetForm: () => void;
   getFullPhoneNumber: () => string;
+
+  // 유효성 검사
+  setProfileIdAvailable: (value: boolean | null) => void;
+  setNicknameAvailable: (value: boolean | null) => void;
 }
 
 // 초기값 정의
@@ -48,6 +54,8 @@ const initialState: SignupForm = {
     last: '',
   },
   telephone: '',
+  isProfileIdAvailable: null,
+  isNicknameAvailable: null,
 };
 
 export const useSignupStore = create<SignupStore>()(
@@ -57,13 +65,13 @@ export const useSignupStore = create<SignupStore>()(
       ...initialState,
 
       // Setter 함수
-      setProfileId: id => set({ profileId: id }),
+      setProfileId: id => set({ profileId: id, isProfileIdAvailable: null }),
 
       setPassword: password => set({ password }),
 
       setPasswordCheck: passwordCheck => set({ passwordCheck }),
 
-      setNickname: nickname => set({ nickname }),
+      setNickname: nickname => set({ nickname, isNicknameAvailable: null }),
 
       setBirthDate: birthDate => set({ birthDate }),
 
@@ -86,10 +94,14 @@ export const useSignupStore = create<SignupStore>()(
 
       setTelephone: telephone => set({ telephone }),
 
+      // 유효성 검사
+      setProfileIdAvailable: value => set({ isProfileIdAvailable: value }),
+      setNicknameAvailable: value => set({ isNicknameAvailable: value }),
+
       // 폼 초기화
       resetForm: () => {
-        useSignupStore.persist.clearStorage();  // 스토리지 삭제 먼저
-        set(initialState);  // 상태 초기화
+        useSignupStore.persist.clearStorage(); // 스토리지 삭제 먼저
+        set(initialState); // 상태 초기화
       },
 
       getFullPhoneNumber: () => {

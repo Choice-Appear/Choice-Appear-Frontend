@@ -65,6 +65,33 @@
       color: #666;
       font-size: small;
     }
+
+    .success {
+      color: #2e7d32;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .error {
+      color: #d32f2f;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .spinner {
+      animation: spin 1s linear infinite;
+      margin-top: 4px;
+      color: #666;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
   }
 
   .phoneInputContainer {

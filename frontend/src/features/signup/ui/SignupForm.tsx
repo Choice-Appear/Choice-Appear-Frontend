@@ -1,5 +1,10 @@
 import styles from './SignupForm.module.scss';
+import { Loader2 } from 'lucide-react';
 import { useSignupStore } from '../model/useSignupStore';
+import {
+  useCheckNickname,
+  useCheckProfileId,
+} from '../model/useDuplicatedCheckMutation';
 
 export const SignupForm = () => {
   const {
@@ -23,6 +28,27 @@ export const SignupForm = () => {
     setTelephone,
   } = useSignupStore();
 
+  const checkProfileId = useCheckProfileId();
+  const checkNickname = useCheckNickname();
+  const { isProfileIdAvailable, isNicknameAvailable } = useSignupStore();
+
+  // onBlur 핸들러 정의
+  const handleProfileIdBlur = () => {
+    const trimmed = profileId.trim();
+    if (!trimmed) return;
+
+    // API 요청 전 정규 표현식 검증
+    const pattern = /^(?=.*[a-z])[a-z0-9]{4,16}$/;
+    if (!pattern.test(trimmed)) return;
+
+    checkProfileId.mutate(profileId);
+  };
+
+  const handleNicknameBlur = () => {
+    if (!nickname.trim()) return;
+    checkNickname.mutate(nickname);
+  };
+
   return (
     <form id="signup-form">
       <table className={styles.table}>
@@ -41,13 +67,25 @@ export const SignupForm = () => {
                   title="4~16자 사이의 영문 소문자를 입력하세요."
                   value={profileId}
                   onChange={e => setProfileId(e.target.value)}
+                  onBlur={handleProfileIdBlur}
                   required
                 />
               </div>
-              <div className={styles.guide}>
-                영문 소문자(숫자 조합 가능), 4~16자 / 로그인 시 사용되는
-                아이디입니다.
-              </div>
+              {checkProfileId.isPending ? (
+                <Loader2
+                  size={16}
+                  className={styles.spinner}
+                />
+              ) : isProfileIdAvailable === true ? (
+                <div className={styles.success}>사용 가능한 아이디입니다.</div>
+              ) : isProfileIdAvailable === false ? (
+                <div className={styles.error}>이미 사용 중인 아이디입니다.</div>
+              ) : (
+                <div className={styles.guide}>
+                  영문 소문자(숫자 조합 가능), 4~16자 / 로그인 시 사용되는
+                  아이디입니다.
+                </div>
+              )}
             </td>
           </tr>
           <tr>
@@ -101,12 +139,24 @@ export const SignupForm = () => {
                   type="text"
                   value={nickname}
                   onChange={e => setNickname(e.target.value)}
+                  onBlur={handleNicknameBlur}
                   required
                 />
               </div>
-              <div className={styles.guide}>
-                사이트 내에서 보여지는 회원님의 이름입니다.
-              </div>
+              {checkNickname.isPending ? (
+                <Loader2
+                  size={16}
+                  className={styles.spinner}
+                />
+              ) : isNicknameAvailable === true ? (
+                <div className={styles.success}>사용 가능한 닉네임입니다.</div>
+              ) : isNicknameAvailable === false ? (
+                <div className={styles.error}>이미 사용 중인 닉네임입니다.</div>
+              ) : (
+                <div className={styles.guide}>
+                  사이트 내에서 보여지는 회원님의 이름입니다.
+                </div>
+              )}
             </td>
           </tr>
           <tr>
