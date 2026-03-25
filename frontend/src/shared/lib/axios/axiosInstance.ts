@@ -50,25 +50,26 @@ axiosInstance.interceptors.response.use(
       _retry?: boolean;
     };
 
+    // 1) 401이 아니거나 이미 재시도한 요청은 reject
     if (error.response?.status !== 401 || originalRequest._retry) {
       return Promise.reject(error);
     }
 
-    // logout 요청이 401이면 refresh 시도 없이 통과
+    // 2) logout 요청이 401이면 refresh 없이 통과
     if (originalRequest.url?.includes('/auth/logout')) {
       return Promise.reject(error);
     }
 
     const currentPath = window.location.pathname;
 
-    // refresh 요청 자체가 401
+    // 3) refresh 요청 자체가 401이면 로그아웃 처리
     if (originalRequest.url?.includes('/auth/refresh')) {
       removeCookie('accessToken');
       dispatchUnauthorized(currentPath);
       return Promise.reject(error);
     }
 
-    // refresh 시도
+    // 4) 무한루프 방지 플래그 세팅 후 refresh
     originalRequest._retry = true;
 
     try {
