@@ -4,7 +4,7 @@ export interface SignupRequest {
   password: string;
   email: string;
   cellPhoneNumber: string;
-  generalPhoneNumber: string;
+  generalPhoneNumber: string | null;
   smsAgreement: boolean;
   emailAgreement: boolean;
   privacyAgreement: boolean;
