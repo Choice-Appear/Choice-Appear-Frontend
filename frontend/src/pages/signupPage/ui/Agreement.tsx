@@ -35,7 +35,7 @@ export const Agreement = () => {
     if (window.confirm('작성하신 내용이 사라집니다. 정말 취소하시겠습니까?')) {
       resetTerms();
       resetForm();
-      navigate('/');
+      navigate('/', { replace: true });
     }
   };
 
