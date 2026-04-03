@@ -14,11 +14,12 @@ import {
 import { Agreement, Join, SignupDone } from '@/pages/signupPage';
 import { CategoryList, RecentView } from '@/pages/products';
 import { MyBasket } from '@/pages/myBasket';
-import { NoticeBoard } from '@/pages/board';
+import { NoticeBoard, QnaBoard } from '@/pages/board';
 import { WishList } from '@/pages/wishList';
 
 import { createBrowserRouter } from 'react-router-dom';
 import AuthGuard from './AuthGuard';
+import { PostWritePage } from '@/pages/board/ui/PostWritePage';
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,20 @@ export const router = createBrowserRouter([
           {
             path: 'notice',
             element: <NoticeBoard />,
+          },
+          {
+            path: 'notice/new-post',
+            element: <PostWritePage />,
+          },
+          {
+            path: 'qna',
+            element: <QnaBoard />,
+            children: [
+              {
+                path: 'new-post',
+                element: <PostWritePage />,
+              },
+            ],
           },
 
           /* 보호 라우트 */
