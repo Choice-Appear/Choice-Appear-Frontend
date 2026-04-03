@@ -1,0 +1,79 @@
+.tablePickerWrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.toolbarBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: #ebebeb;
+  }
+
+  &:active {
+    background-color: #dedede;
+  }
+}
+
+.tablePickerPopup {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.tablePickerLabel {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  min-height: 18px;
+}
+
+.tablePickerGrid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 3px;
+}
+
+.tablePickerCell {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  background-color: #fff;
+  cursor: pointer;
+  transition:
+    background-color 0.1s ease,
+    border-color 0.1s ease;
+
+  &:hover {
+    background-color: #e8f0fe;
+    border-color: #4285f4;
+  }
+
+  &.isHighlighted {
+    background-color: #e8f0fe;
+    border-color: #4285f4;
+  }
+}

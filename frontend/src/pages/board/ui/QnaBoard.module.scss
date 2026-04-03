@@ -1,1 +1,24 @@
-// Q&A 게시판 스타일
+.title {
+  display: flex;
+  justify-content: center;
+  margin: 60px 30px;
+}
+
+.boardListWrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.boardListToolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px; /* 기존 버튼-BoardList 간 간격 유지 */
+}
+
+.newBtn {
+  width: 100px;
+  margin-right: 16px;
+  padding: 12px;
+}
