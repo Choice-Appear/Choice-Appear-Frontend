@@ -43,7 +43,7 @@ export const Header = () => {
     },
     {
       key: 'qna',
-      label: <Link to={'/notice'}>Q&A</Link>,
+      label: <Link to={'/qna'}>Q&A</Link>,
     },
     {
       key: 'diary',
@@ -102,7 +102,7 @@ export const Header = () => {
               trigger={['hover']}
             >
               <Link
-                to={'/'}
+                to={'/notice'}
                 className={styles.routing}
               >
                 COMMUNITY
