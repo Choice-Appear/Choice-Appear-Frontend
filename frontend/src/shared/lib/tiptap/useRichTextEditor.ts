@@ -28,7 +28,10 @@ export const useRichTextEditor = ({
 }: UseRichTextEditorOptions) => {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        link: false,
+        underline: false,
+      }),
       Underline,
       TextStyle,
       Color,
@@ -38,10 +41,10 @@ export const useRichTextEditor = ({
         types: ['heading', 'paragraph'],
       }),
       Link.configure({
-        openOnClick: false,
+        openOnClick: true,  // 에디터 편집 중 수정 가능
         HTMLAttributes: {
           rel: 'noopener noreferrer',
-          target: '_blank',
+          target: '_blank',  // 새 탭에서 열리도록 설정
         },
       }),
       Image.configure({
