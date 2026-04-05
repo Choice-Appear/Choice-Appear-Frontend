@@ -2,6 +2,7 @@ import styles from './EditorToolbar.module.scss';
 import type { Editor } from '@tiptap/core';
 import {
   AlignmentGroup,
+  BackgroundColorPickerButton,
   ColorPickerButton,
   FontFamilySelect,
   FontSizeSelect,
@@ -66,8 +67,11 @@ export const EditorToolbar = ({
         {/* 폰트 스타일 */}
         <TextStyleGroup editor={editor} />
 
-        {/* 글자색 */}
+        {/* 폰트 색 */}
         <ColorPickerButton editor={editor} />
+
+        {/* 폰트 배경색 */}
+        <BackgroundColorPickerButton editor={editor} />
 
         {/* 글자 정렬 */}
         <AlignmentGroup editor={editor} />

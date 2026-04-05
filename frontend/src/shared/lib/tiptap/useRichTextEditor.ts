@@ -14,6 +14,7 @@ import { TableRow } from '@tiptap/extension-table-row';
 import { TableCell } from '@tiptap/extension-table-cell';
 import { TableHeader } from '@tiptap/extension-table-header';
 import { Youtube } from '@tiptap/extension-youtube';
+import { Highlight } from '@tiptap/extension-highlight';
 
 interface UseRichTextEditorOptions {
   content?: string;
@@ -39,6 +40,9 @@ export const useRichTextEditor = ({
       Color,
       FontSize,
       FontFamily,
+      Highlight.configure({
+        multicolor: true,
+      }),
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
