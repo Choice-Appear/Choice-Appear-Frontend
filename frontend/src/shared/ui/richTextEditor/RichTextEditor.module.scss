@@ -30,8 +30,7 @@
     outline: none;
 
     // placeholder
-    &:global(.ProseMirror-focused)
-      p:global(.is-editor-empty):first-child::before {
+    p:global(.is-editor-empty):first-child::before {
       content: attr(data-placeholder);
       color: #aaa;
       pointer-events: none;
