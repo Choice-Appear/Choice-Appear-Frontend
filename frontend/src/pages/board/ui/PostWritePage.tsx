@@ -1,10 +1,12 @@
-import { useState } from 'react'
-import { PostEditor } from '@/features/boardOptions'
+import { useCallback, useRef } from 'react';
+import { PostEditor } from '@/features/boardOptions';
 
 export const PostWritePage = () => {
-  const [, setContent] = useState('')
+  const contentRef = useRef('');
 
-  return (
-    <PostEditor onChange={setContent} />
-  )
-}
+  const handleChange = useCallback((html: string) => {
+    contentRef.current = html;
+  }, []);
+
+  return <PostEditor onChange={handleChange} />;
+};
