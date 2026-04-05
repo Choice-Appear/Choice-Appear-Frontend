@@ -6,4 +6,7 @@ export { ColorPickerButton } from './ColorPickerButton';
 export { TablePickerButton } from './TablePickerButton';
 export { LinkButton } from './LInkButton';
 export { ImageUploadButton } from './ImageUploadButton';
-export { VideoUploadButton } from './VideoUploadButton';
+export { VideoEmbedButton } from './VideoEmbedButton';
+export { TextStyleGroup } from './TextStyleGroup';
+export { AlignmentGroup } from './AlignmentGroup';
+export { ListGroup } from './ListGroup';

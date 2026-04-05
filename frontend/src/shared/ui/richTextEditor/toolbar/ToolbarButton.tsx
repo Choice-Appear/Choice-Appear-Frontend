@@ -1,9 +1,7 @@
 import styles from './ToolbarButton.module.scss';
 import type React from 'react';
-import type { Editor } from '@tiptap/core';
 
 interface ToolbarButtonProps {
-  editor: Editor;
   onClick: () => void;
   isActive?: boolean;
   disabled?: boolean;
