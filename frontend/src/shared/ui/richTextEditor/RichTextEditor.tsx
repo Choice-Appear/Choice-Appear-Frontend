@@ -16,11 +16,13 @@ export const RichTextEditor = ({
   editable = true,
   onChange,
   onImageUpload,
+  placeholder,
 }: RichTextEditorProps) => {
   const editor = useRichTextEditor({
     content,
     editable,
     onUpdate: onChange,
+    placeholder,
   });
 
   // useEditor는 비동기로 초기화되므로 초기 렌더링 시 null일 수 있음
