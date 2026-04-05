@@ -50,7 +50,9 @@ export const VideoUploadButton = ({ editor }: VideoUploadButtonProps) => {
     >
       <button
         type="button"
-        onClick={() => setIsOpen(prev => !prev)}
+        onClick={() => {
+          setIsOpen(prev => !prev);
+        }}
         aria-label="동영상 삽입"
         aria-expanded={isOpen}
         className={toolbarStyle.toolbarBtn}

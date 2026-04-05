@@ -51,7 +51,6 @@ export const LinkButton = ({ editor }: LinkButtonProps) => {
     }
 
     editor.chain().focus().setLink({ href: url }).run();
-
     handleClose();
   };
 
