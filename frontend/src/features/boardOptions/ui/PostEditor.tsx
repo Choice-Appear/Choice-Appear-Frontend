@@ -6,22 +6,14 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface PostEditorProps {
-  title: string;
-  onTitleChange: (title: string) => void;
   content: string;
   onContentChange: (html: string) => void;
-  onSubmit: () => void;
 }
 
-export const PostEditor = ({
-  title,
-  onTitleChange,
-  content,
-  onContentChange,
-  onSubmit,
-}: PostEditorProps) => {
+export const PostEditor = ({ content, onContentChange }: PostEditorProps) => {
   const navigate = useNavigate();
   const editorRef = useRef<Editor | null>(null);
+  const titleRef = useRef<HTMLInputElement>(null);
 
   // 취소 버튼 클릭 시 alert 메시지
   const handleCancel = () => {
@@ -38,6 +30,10 @@ export const PostEditor = ({
     }
   };
 
+  const handleSubmit = () => {
+    console.log({ title: titleRef.current?.value ?? '', content });
+  };
+
   return (
     <section>
       {/* 제목 */}
@@ -45,8 +41,8 @@ export const PostEditor = ({
         <input
           className={styles.titleInput}
           type="text"
-          value={title}
-          onChange={e => onTitleChange(e.target.value)}
+          ref={titleRef}
+          defaultValue={''}
           onKeyDown={handleTitleKeyDown}
           placeholder="제목을 입력하세요"
         />
@@ -71,7 +67,12 @@ export const PostEditor = ({
         >
           취소
         </Button>
-        <Button onClick={onSubmit} variant="primary">작성 완료</Button>
+        <Button
+          onClick={handleSubmit}
+          variant="primary"
+        >
+          작성 완료
+        </Button>
       </div>
     </section>
   );

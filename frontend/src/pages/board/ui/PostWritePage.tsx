@@ -4,9 +4,14 @@ import { PostEditor } from '@/features/boardOptions';
 export const PostWritePage = () => {
   const contentRef = useRef('');
 
-  const handleChange = useCallback((html: string) => {
+  const handleContentChange = useCallback((html: string) => {
     contentRef.current = html;
   }, []);
 
-  return <PostEditor onChange={handleChange} />;
+  return (
+    <PostEditor
+      content={contentRef.current}
+      onContentChange={handleContentChange}
+    />
+  );
 };
